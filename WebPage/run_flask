@@ -1,0 +1,5 @@
+export FLASK_APP=project/backend
+export FLASK_DEBUG=true
+expoer FLASK_RUN_PORT=5600
+source project_env/bin/activate
+flask run
