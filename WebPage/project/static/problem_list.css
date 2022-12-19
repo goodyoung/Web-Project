@@ -116,13 +116,12 @@ header{
 }
 
 .category_list{
+    display: none;
+
     margin:0;
     padding: 0;
 
     list-style-type: none;
-
-    animation: shrink 300ms ease-in-out forwards;
-    transform-origin: top center;
 }
 
 @keyframes grow {
@@ -132,16 +131,6 @@ header{
    100% {
        transform: scaleY(1);
    }
-}
-
-@keyframes shrink {
-    0% {
-        transform: scaleY(1);
-    }
-    100% {
-        transform: scaleY(0);
-        display:none;
-    }
 }
 
 .category_list.visible{
@@ -192,6 +181,9 @@ section{
     align-items: center;
 
     padding-left : 15px;
+
+    text-decoration: none;
+    color: black;
 }
 
 .problem_icon{

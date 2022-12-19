@@ -1,6 +1,6 @@
 
 
-async function problem_SQL(query){
+async function send_SQL(query){
 
     let result = await fetch("/runSQL", {
         method: "POST",
@@ -15,9 +15,8 @@ async function problem_SQL(query){
     return result
 }
 
-
 async function make_category(){
-    let categories = await problem_SQL("SELECT category, COUNT(category) AS n FROM problem GROUP BY category ORDER BY category")
+    let categories = await send_SQL("SELECT category, COUNT(category) AS n FROM problem GROUP BY category ORDER BY category")
 
     console.log(categories)
     let category_list = document.querySelector(".category_list")
@@ -78,10 +77,10 @@ async function make_category(){
     }
 }
 
-async function make_problem(category){
+async function make_problem(category="ALL"){
     let problems;
-    if(category=="ALL") problems = await problem_SQL("SELECT id FROM problem");
-    else problems = await problem_SQL(`SELECT id FROM problem WHERE category = '${category}'`);
+    if(category=="ALL") problems = await send_SQL("SELECT id FROM problem");
+    else problems = await send_SQL(`SELECT id FROM problem WHERE category = '${category}'`);
 
     console.log(problems)
     let problem_list = document.querySelector(".problem_list")
@@ -94,6 +93,7 @@ async function make_problem(category){
         div.classList.add("problem_icon", "unsolved")
 
         let a = document.createElement("a")
+        a.setAttribute("href", "/problem/"+problem.id)
         a.classList.add("problem_link")
         a.appendChild(document.createTextNode(problem.id))
 
@@ -104,15 +104,18 @@ async function make_problem(category){
     }
 }
 
+async function initUI(){
+    await make_problem()
+    await make_category()   
+}
+
 
 window.onload = function(){
-    console.log("hello")
     let category_button = document.querySelector(".category_button")
 
     category_button.addEventListener('click', () => {
         category_list = category_button.parentNode.querySelector('.category_list').classList.toggle("visible")
     })
 
-    make_category()
-
+    initUI()
 }
