@@ -10,20 +10,67 @@
     <title>회원가입</title>
 </head>
 <body>
+    <header height = "100px">
+        <div style = "height: 100px">
+            <img src =  "{{url_for('static',filename='sprout.gif')}}" width="110px" height = "100%" style = "margin-right:5px">
+        </div>
+    </header>
     <section>
+
+        <script> function tr() {
+            let hy = document.querySelector('#te')
+            let text = hy.firstChild.innerText
+            re = document.querySelectorAll('#validate')
+            console.log(re)
+            re.forEach((i) => {
+                console.log(text)
+                if (text === i.getAttribute('name')){
+                    
+                     i.innerText = `${text}은 필수입력 항목입니다.`
+
+                }
+            })
+            hy.remove()
+        }
+        </script>
+
       <form action="{{ url_for('login.register_page') }}" method="post">
+
+
         <div class="join">
-            <div style = "height: 50px">
-                <img src =  "{{url_for('static',filename='sprout.gif')}}" width="70px" height = "40px" style ="margin-left: 24px">
-            </div>
             <div class="join_title">회원가입</div>        
             <div class="join_input">            
-                <input class="join_inputBox" placeholder="이름" type="text" name = 'username'>
+                <label for="username"></label>
+                <input class="join_inputBox" placeholder="이름" type="text" name = 'username' >
+                <div id = 'validate' name='이름'> </div>
+
+                <label for="userid"></label>
                 <input class="join_inputBox" placeholder="별명" type="text" name = 'userid'>
+                <div id = 'validate' name='별명'> </div>
+
+                <label for="userpw"></label>
                 <input class="join_inputBox" placeholder="비밀번호" type="password" name = 'userpw'>
+                <div id = 'validate' name='비밀번호'> </div>
             </div>            
+            
             <div class="join_submit">
                 <input class="join_submitButton" type = 'submit' value = "가입 완료" />
+
+                {{ form.csrf_token }}
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field, errors in form.errors.items() %}
+                    <strong id = 'te'>{{ form[field].label }}</strong>
+                    <ul>
+                        {% for error in errors %}
+                        
+                        {% endfor %}
+                    </ul>
+                        <script> tr()</script>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
       </form>
                 <p style="font-size:11px;">가입하면
                     <span style="color:red;">이용약관</span>과
@@ -31,6 +78,10 @@
                 </p>
             </div>
         </div>  
+
+
+
     </section>
 </body>
 </html> 
+
