@@ -1,0 +1,42 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<script> document.querySelector(".quest_link").classList.add("selected") </script>
+
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='quest_list.css') }}">
+<script defer src="{{ url_for('static', filename='quest_list.js') }}"></script>
+
+<header>
+    <div class="top_menu">
+        <p>
+            문제 선택
+        </p>
+        <div class="category">
+            <button class="category_button">
+                <label class="category_value">ALL</label>
+                <img src="{{ url_for('static', filename='ui/dropdown.png') }}">
+            </button>
+            <ul class="category_list deactive">
+            </ul>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="main">
+        <ul class="problem_list">
+            <li>
+                <div class="problem_icon solved"></div>
+                <a class="problem_link">문제 1</a>
+            </li>
+            <li>
+                <div class="problem_icon solving"></div>
+                <a class="problem_link">문제 2</a>
+            </li>
+            <li>
+                <div class="problem_icon unsolved"></div>
+                <a class="problem_link">문제 3</a>
+            </li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

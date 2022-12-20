@@ -1,0 +1,158 @@
+body{
+    position: relative;
+
+    width:360px;
+    height:640px;
+
+    border: solid;
+}
+
+body *{
+    box-sizing: border-box;
+}
+
+header{
+    position: absolute;
+    left:0px;
+    top:0px;
+
+    width:100%;
+
+    margin:0;
+    padding: 0;
+}
+
+.head_menu{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    list-style-type: none;
+}
+
+.head_menu > li{
+    padding-bottom:10px;
+
+    display:flex;
+    flex-grow:1;
+
+    background-color: #71BC66;
+}
+
+.head_menu > li > button{
+    height:50px;
+    flex-grow:1;
+
+    background-color: #71BC66;
+
+    border-style: none;
+
+    color:white;
+}
+
+.menu_selected{
+    border-width: 0 0 1px 0;
+    border-style: solid !important;
+    border-color: white;
+}
+
+section{
+    margin-top: 120px;
+}
+
+.join {
+    width: 100%;
+    height: 100%;    
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.join_title {
+    display: flex;
+    justify-content:flex-start ;
+    align-items:flex-start;
+
+    padding: 0px 38px 10px;
+    margin: 0;
+
+    font-family: Roboto;
+    font-weight: Medium;
+    font-size: 40px;
+    opacity: 1;
+}
+
+.join_input {
+    display: flex;
+    align-content: center;    
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    margin: 30px 0px;    
+
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+}
+
+.join_inputBox {    
+    width: 83%;
+    height: auto;
+    background: #D9D9D9;
+    opacity: 1;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    margin: 15px;
+    padding: 11px;
+
+    border: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;    
+  }
+
+.join_submit {
+    display: flex;
+    align-content: center;    
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    font-family: Roboto;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;    
+
+    text-align: center;
+}
+
+.join_submitButton {
+    width: 83%;
+    height: auto;
+    background: rgba(223,132,132,1);
+    opacity: 1;
+    
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+    padding: 11px;
+    
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+}
+
+

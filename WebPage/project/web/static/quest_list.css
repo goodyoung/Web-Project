@@ -1,0 +1,157 @@
+header{
+    position: absolute;
+    left:0px;
+    top:0px;
+
+    width:100%;
+
+    margin:0;
+    padding: 0;
+}
+
+.top_menu{
+    padding-left:25px;
+    padding-right:20px;
+
+    height:50px;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid black;
+}
+
+.top_menu button{
+    width:120px;
+    height:30px;
+
+    background-color: white;
+
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #6200EE;
+}
+
+.top_menu > p{
+    display:flex;
+    align-items: center;;
+
+    margin:0;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.category{
+    padding: 10px 0;
+}
+
+.category_button{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category_button > img{
+    width:20px;
+}
+
+.category_list{
+    display: none;
+
+    margin:0;
+    padding: 0;
+
+    list-style-type: none;
+}
+
+@keyframes grow {
+    0% {
+       transform: scaleY(0);
+   }
+   100% {
+       transform: scaleY(1);
+   }
+}
+
+.category_list.visible{
+    display:block;
+    animation: grow 300ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+.category_list > li{
+    width: 100%;
+}
+
+.category_list_button{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category_list_button:hover{
+    background-color: rgb(232, 178, 255);
+}
+
+section{
+    margin-top:60px;
+}
+
+.problem_list{
+    margin:0;
+    padding:0;
+
+    list-style-type: none;
+}
+
+.problem_list > li{
+    padding : 5px 10px 5px 10px;
+
+    display: flex;
+}
+
+.problem_list > li:hover{
+    background-color: #E2DAED;
+}
+
+.problem_link{
+    flex-grow: 1;
+
+    display: flex;
+    align-items: center;
+
+    padding-left : 15px;
+
+    text-decoration: none;
+    color: black;
+}
+
+.problem_icon{
+    margin: 0px 10px 0px 10px;
+
+    width:24px;
+    height:24px;
+}
+
+.problem_icon.solved{
+    background-image: url("ui/solved.png");
+}
+
+.problem_icon.solving{
+    background-image: url("ui/solving.png");
+}
+
+.problem_icon.unsolved{
+    background-image: url("ui/unsolved.png");
+}

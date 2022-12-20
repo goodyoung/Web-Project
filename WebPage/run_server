@@ -1,0 +1,4 @@
+export FLASK_APP=project/web
+export FLASK_DEBUG=true
+source project_env/bin/activate
+flask run --host=0.0.0.0

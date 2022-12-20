@@ -1,0 +1,42 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<script> document.querySelector(".quest_link").classList.add("selected") </script>
+
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='quest_show.css') }}">
+<script defer src="{{ url_for('static', filename='quest_show.js') }}"></script>
+
+<header>
+    <div class="problem_info">
+        <div class="problem_title">
+            <p class="problem_status"></p>
+            <p class="problem_id">{{ problem_dict["id"] }}</p>
+        </div>
+        <div class="problem_att">
+            <p class="problem_category">{{ problem_dict["category"] }}</p>
+            <p class="problem_type">{{ problem_dict["type"] }}</p>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="main">
+        <div class="problem_content">
+            {{ problem_dict["content"] }}
+        </div>
+        <div class="answer_input">
+            {% if problem_dict["type"]=="객관식" %}
+            <ol>
+                {% for choice in problem_dict["choices"].split("\n") %}
+                    <li> <label><input type="radio" class="problem_answer" name="answer" value="{{ loop.index }}">{{ choice }}</label></li>
+                {% endfor %}
+            </ol>
+            {% else %}
+            <input type="text" placeholder="정답 입력" class="problem_answer">
+            {% endif %}
+            <button class="answer_commit">정답 확인</button>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LEADERBOARD 입니다.</h1>
+    {% for key, value in lead.items() %}
+    <p> 
+        {% for ret1,ret2  in value.items() %}
+
+            | {{ret1}} : {{ret2}} | 
+
+        {% endfor %}
+    </p>
+    <br>
+    {% endfor %}
+</body>
+</html>
