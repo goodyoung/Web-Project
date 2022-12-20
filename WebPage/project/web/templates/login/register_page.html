@@ -11,9 +11,11 @@
 </head>
 <body>
     <section>
-    <img src =  "{{url_for('static',filename='logoyogo-1-69.jpeg')}}">
       <form action="{{ url_for('login.register_page') }}" method="post">
         <div class="join">
+            <div style = "height: 50px">
+                <img src =  "{{url_for('static',filename='sprout.gif')}}" width="70px" height = "40px" style ="margin-left: 24px">
+            </div>
             <div class="join_title">회원가입</div>        
             <div class="join_input">            
                 <input class="join_inputBox" placeholder="이름" type="text" name = 'username'>
