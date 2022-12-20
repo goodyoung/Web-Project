@@ -1,4 +1,3 @@
-
 async function send_SQL(query){
 
     let result = await fetch("/runSQL", {
@@ -38,9 +37,18 @@ async function check_answer(){
     }
 
     correct = await send_SQL(`SELECT CASE WHEN answer = '${answer}' THEN TRUE ELSE FALSE END AS success FROM ${db} WHERE id = ${problem_id}`)
-    if(correct[0]["success"]) console.log("정답입니다!");
-    else console.log("오답입니다.")
+    if(correct[0]["success"]){
+        console.log("정답입니다!")
+    }
+    else{
+        console.log("오답입니다.")
+    } 
     return
+}
+
+async function call_id(){
+    let userid = await fetch("/get_ID")
+    return userid
 }
 
 window.onload = function () {
@@ -49,4 +57,6 @@ window.onload = function () {
     answer_commit.addEventListener('click', () => {
         check_answer()
     })
+
+    console.log(sessionStorage.getItem("id"))
 }
