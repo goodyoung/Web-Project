@@ -153,5 +153,7 @@ section{
     border-bottom-right-radius: 10px;
     overflow: hidden;
 }
-
-
+.validate{
+    font-size: 13px;
+    margin-left: 25px;
+}

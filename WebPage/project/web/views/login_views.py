@@ -36,31 +36,25 @@ def login_page():
 @bp.route('/register', methods=['GET', 'POST'])
 def register_page():
     form = RegisterForm()
-    print(form)
-    print(form.errors)
-
     if request.method == 'POST'and form.validate_on_submit():
         # real_name이 character name일 듯
         username= request.form['username']
         userid= request.form['userid']
         userpw= request.form['userpw']
-
         is_exist = wp.send_query("SELECT EXISTS (SELECT id FROM user WHERE id = '{}') AS success".format(userid))
 
         # 1. name이 같나 확인한다. (기존 db에서)
-        if (is_exist[0]["success"] or len(username)==0 or len(userid)==0 or len(userpw)==0):
+        if (is_exist[0]["success"]):
             # 2. 같으면 x 다시 돌아가게
             # 다시 돌아가게 짠다.
-            print('역딘가')
+            flash('별명을 다시 입력하세요!','success')
             return render_template('login/register_page.html', form = form)
         else:
             # 3. 다르면 그냥 회원가입 하게?? 가 맞는듯?
             # + db에 추가 하고 '/' 라우트로 이동.
             wp.send_query("INSERT INTO user(id, pwd, name) VALUES ('{}', '{}', '{}')".format(userid, userpw, username), commit=True)
-            
-            flash('asf님 가입 완료!', 'success')
             return redirect(url_for("login.login_page"))
         
     else:
-        print('sdgasdghasdgsa')
+        
         return render_template('login/register_page.html', form = form)
