@@ -1,121 +1,73 @@
-
-
-async function send_SQL(query){
-
-    let result = await fetch("/runSQL", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "query": query
-        }),
-        }).then((response) => response.json());
-    
-    return result
-}
-
-async function make_category(){
-    let categories = await send_SQL("SELECT category, COUNT(category) AS n FROM problem GROUP BY category ORDER BY category")
-
-    console.log(categories)
-    let category_list = document.querySelector(".category_list")
-
-    let li = document.createElement("li")
-
-    let button = document.createElement("button")
-    button.classList.add("category_list_button")
-
-    let label1 = document.createElement("label")
-    label1.appendChild(document.createTextNode("ALL"))
-    let label2 = document.createElement("label")
-    label2.appendChild(document.createTextNode(""))
-
-    button.appendChild(label1)
-    button.appendChild(label2)
-    button.addEventListener('click', ()=>{
-        category_value = document.querySelector(".category_value")
-        category_value.innerText = "ALL"
-
-        category_list = document.querySelector(".category_list")
-        category_list.classList.toggle("visible")
-        
-        make_problem("ALL")
-    })
-
-
-    li.appendChild(button)
-    category_list.appendChild(li)
-
-    for (let category of categories){
-        let li = document.createElement("li")
-
-        let button = document.createElement("button")
-        button.classList.add("category_list_button")
-
-        let label1 = document.createElement("label")
-        label1.appendChild(document.createTextNode(category.category))
-        let label2 = document.createElement("label")
-        label2.appendChild(document.createTextNode(category.n))
-
-        button.appendChild(label1)
-        button.appendChild(label2)
-
-        button.addEventListener('click', ()=>{
-            category_value = document.querySelector(".category_value")
-            category_value.innerText = category.category
-
-            category_list = document.querySelector(".category_list")
-            category_list.classList.toggle("visible")
-
-            make_problem(category.category)
-        })
-
-        li.appendChild(button)
-
-        category_list.appendChild(li)
-    }
-}
-
-async function make_problem(category="ALL"){
-    let problems;
-    if(category=="ALL") problems = await send_SQL("SELECT id FROM problem");
-    else problems = await send_SQL(`SELECT id FROM problem WHERE category = '${category}'`);
-
-    console.log(problems)
+async function filter_problem(target_category="ALL", target_status="ALL"){
+    console.log(target_category, target_status)
     let problem_list = document.querySelector(".problem_list")
-    problem_list.innerHTML = ""
 
-    for (let problem of problems){
-        let li = document.createElement("li")
+    for(let problem of problem_list.children){
+        let category = problem.querySelector(".problem_category").innerText
+        let status = problem.dataset["status"]
+        console.log(status, target_status)
 
-        let div = document.createElement("div")
-        div.classList.add("problem_icon", "unsolved")
+        let valid = true
+        if(target_category!="ALL"){
+            valid = valid && category==target_category
+        }
+        if(target_status!="ALL"){
+            valid = valid && status==target_status
+        }
 
-        let a = document.createElement("a")
-        a.setAttribute("href", "/quest/"+problem.id)
-        a.classList.add("problem_link")
-        a.appendChild(document.createTextNode(problem.id))
+        if(valid && problem.classList.contains("deactivate") || !valid && !problem.classList.contains("deactivate")){
+            problem.classList.toggle("deactivate")
+        }
+        else{
 
-        li.appendChild(div)
-        li.appendChild(a)
-
-        problem_list.appendChild(li)
+        }
     }
 }
-
-async function initUI(){
-    await make_problem()
-    await make_category()   
-}
-
 
 window.onload = function(){
-    let category_button = document.querySelector(".category_button")
+    let dropdown_button = document.querySelectorAll(".dropdown_button")
 
-    category_button.addEventListener('click', () => {
-        category_list = category_button.parentNode.querySelector('.category_list').classList.toggle("visible")
-    })
+    for (let droopdown of dropdown_button){
+        droopdown.addEventListener('click', () => {
+            category_list = droopdown.parentNode.querySelector('.dropdown_list').classList.toggle("visible")
+        })
 
-    initUI()
+    }
+
+    let status_list_button = document.querySelectorAll(".status_list_button")
+
+    for(let button of status_list_button){
+        button.addEventListener('click', ()=>{
+            let target_category = document.querySelector(".category_value").innerText
+            let target_status = button.dataset["status"]
+
+            let status_value = document.querySelector(".status_value")
+            status_value.classList.remove(...status_value.classList)
+            status_value.classList.add("status_value", "status_icon")
+            if(target_status!="ALL") status_value.classList.add(target_status)
+            status_value.dataset["status"] = target_status
+
+            let status_list = document.querySelector(".status_list")
+            status_list.classList.toggle("visible")
+
+            filter_problem(target_category, target_status)
+        })
+    }
+
+    let category_list_button = document.querySelectorAll(".category_list_button")
+
+    for(let button of category_list_button){
+        button.addEventListener('click', ()=>{
+            let target_category = button.querySelector("label").innerText
+            let target_status = document.querySelector(".status_value").dataset["status"]
+
+            let category_value = document.querySelector(".category_value")
+            category_value.innerText = target_category
+
+            let category_list = document.querySelector(".category_list")
+            category_list.classList.toggle("visible")
+
+            filter_problem(target_category, target_status)
+        })
+    }
 }

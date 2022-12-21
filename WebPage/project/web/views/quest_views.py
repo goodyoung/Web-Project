@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request, session
 from ..db import WebProject
 
 bp = Blueprint('quest', __name__, url_prefix='/quest')
@@ -6,16 +6,35 @@ wp = WebProject.instance()
 
 @bp.route('/')
 def quest_list():
-    return render_template('main/quest_list.html')
+    category_data = {}
+    category_data["list"] = wp.send_query("SELECT category, COUNT(category) AS n FROM problem GROUP BY category ORDER BY category")
+    category_data["total"] = wp.send_query("SELECT COUNT(*) AS count FROM problem")[0]["count"]
 
-@bp.route('/<int:problem_id>')
+    problem_list = wp.send_query("""
+    SELECT problem.id, problem.category, (CASE solved WHEN 1 THEN 'solved' WHEN 0 THEN 'solving' ELSE 'unsolved' END) as status 
+    FROM problem LEFT JOIN solving ON problem.id = solving.problem_id AND user_id='{}' 
+    ORDER BY problem.id
+    """.format(session["id"]))
+    return render_template('main/quest_list.html', category_data = category_data, problem_list = problem_list)
+
+@bp.route('/<int:problem_id>', methods=['GET', 'POST'])
 def problem_show(problem_id):
-    sql = "SELECT type FROM problem WHERE id = {0}".format(problem_id)
-    problem_type = wp.send_query(sql)[0]["type"]
+    if(request.method == "POST"):
+        pass
+    
+    problem_data = {}
+
+    problem_data["status"] = wp.send_query("""
+    SELECT (CASE solved WHEN 1 THEN 'solved' WHEN 0 THEN 'solving' ELSE 'unsolved' END) as status 
+    FROM problem LEFT JOIN solving ON problem.id = solving.problem_id AND user_id = '{}' WHERE id = '{}'
+    """.format(session["id"], problem_id))[0]["status"]
+
+    problem_type = wp.send_query("SELECT type FROM problem WHERE id = {0}".format(problem_id))[0]["type"]
     if(problem_type=="객관식"):
         sql = "SELECT problem.*, objective.choices, objective.answer FROM problem INNER JOIN objective ON problem.id = objective.id WHERE problem.id = {}".format(problem_id)
     else:
         sql = "SELECT problem.*, subjective.answer FROM problem INNER JOIN subjective ON problem.id = subjective.id WHERE problem.id = {}".format(problem_id)
-    res = wp.send_query(sql)[0]
+    
+    problem_data["problem"] = wp.send_query(sql)[0]
 
-    return render_template("main/quest_show.html", problem_dict=res)
+    return render_template("main/quest_show.html", problem_data=problem_data)

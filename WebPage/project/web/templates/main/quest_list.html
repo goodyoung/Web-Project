@@ -10,13 +10,58 @@
         <p>
             문제 선택
         </p>
-        <div class="category">
-            <button class="category_button">
-                <label class="category_value">ALL</label>
-                <img src="{{ url_for('static', filename='ui/dropdown.png') }}">
-            </button>
-            <ul class="category_list deactive">
-            </ul>
+        <div class="filter">
+            <div class="status">
+                <button class="dropdown_button">
+                    <div class="status_value status_icon" data-status="ALL"></div>
+                    <img src="{{ url_for('static', filename='ui/dropdown.png') }}">
+                </button>
+                <ul class="dropdown_list status_list">
+                    <li>
+                        <button class="status_list_button" data-status="ALL">
+                            <div class="status_icon"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="status_list_button" data-status="unsolved">
+                            <div class="status_icon unsolved"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="status_list_button" data-status="solving">
+                            <div class="status_icon solving"></div>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="status_list_button" data-status="solved">
+                            <div class="status_icon solved"></div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <button class="dropdown_button">
+                    <label class="category_value">ALL</label>
+                    <img src="{{ url_for('static', filename='ui/dropdown.png') }}">
+                </button>
+                <ul class="dropdown_list category_list">
+                    <li>
+                        <button class="category_list_button">
+                            <label>ALL</label>
+                            <label>{{ category_data.total }}</label>
+                        </button>
+                    </li>
+                    {% for category in category_data.list %}
+                        <li>
+                            <button class="category_list_button">
+                                <label>{{ category.category }}</label>
+                                <label>{{ category.n }}</label>
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </header>
@@ -24,18 +69,13 @@
 <section>
     <div class="main">
         <ul class="problem_list">
-            <li>
-                <div class="problem_icon solved"></div>
-                <a class="problem_link">문제 1</a>
-            </li>
-            <li>
-                <div class="problem_icon solving"></div>
-                <a class="problem_link">문제 2</a>
-            </li>
-            <li>
-                <div class="problem_icon unsolved"></div>
-                <a class="problem_link">문제 3</a>
-            </li>
+            {% for problem in problem_list %}
+                <li class="problem_item" data-status="{{ problem.status }}">
+                    <div class="problem_icon {{ problem.status }}"></div>
+                    <a class="problem_link" href="/quest/{{ problem.id }}">{{ problem.id }}</a>
+                    <div class="problem_category">{{ problem.category }}</div>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </section>

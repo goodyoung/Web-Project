@@ -11,7 +11,7 @@ header{
 
 .top_menu{
     padding-left:25px;
-    padding-right:20px;
+    padding-right:5px;
 
     height:50px;
 
@@ -19,24 +19,6 @@ header{
     justify-content: space-between;
 
     border-bottom: 1px solid black;
-}
-
-.top_menu button{
-    width:120px;
-    height:30px;
-
-    background-color: white;
-
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-
-    color: #6200EE;
 }
 
 .top_menu > p{
@@ -52,27 +34,31 @@ header{
     line-height: 24px;
 }
 
-.category{
-    padding: 10px 0;
+.filter{
+    display: flex;
 }
 
-.category_button{
+.dropdown_button{
     display:flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.category_button > img{
+.dropdown_button > img{
     width:20px;
 }
 
-.category_list{
+.dropdown_list{
     display: none;
 
     margin:0;
-    padding: 0;
+    padding:0;
 
-    list-style-type: none;
+    list-style: none;
+}
+
+.dropdown_list > li{
+    width: 100%;
 }
 
 @keyframes grow {
@@ -84,14 +70,76 @@ header{
    }
 }
 
-.category_list.visible{
+.visible{
     display:block;
     animation: grow 300ms ease-in-out forwards;
     transform-origin: top center;
 }
 
-.category_list > li{
-    width: 100%;
+
+.status{
+    padding: 10px 0;
+    margin-right:10px;
+}
+
+.status button{
+    width:65px;
+    height:30px;
+
+    background-color: white;
+
+    display: center;
+    justify-content: center;
+
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #6200EE;
+}
+
+.status_list_button{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status_list_button:hover{
+    background-color: rgb(232, 178, 255);
+}
+
+.status_icon{
+    margin: 0;
+
+    width:24px;
+    height:24px;
+}
+
+.category{
+    padding: 10px 0;
+}
+
+.category button{
+    width:100px;
+    height:30px;
+
+    background-color: white;
+
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #6200EE;
 }
 
 .category_list_button{
@@ -125,6 +173,10 @@ section{
     background-color: #E2DAED;
 }
 
+.problem_item.deactivate{
+    display: none;
+}
+
 .problem_link{
     flex-grow: 1;
 
@@ -144,14 +196,14 @@ section{
     height:24px;
 }
 
-.problem_icon.solved{
+.solved{
     background-image: url("ui/solved.png");
 }
 
-.problem_icon.solving{
+.solving{
     background-image: url("ui/solving.png");
 }
 
-.problem_icon.unsolved{
+.unsolved{
     background-image: url("ui/unsolved.png");
 }
