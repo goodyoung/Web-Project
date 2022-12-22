@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, session
+from flask import Blueprint, render_template, redirect, url_for, request, session, g
 from ..db import WebProject
 
 bp = Blueprint('quest', __name__, url_prefix='/quest')
@@ -14,7 +14,7 @@ def quest_list():
     SELECT problem.id, problem.category, (CASE solved WHEN 1 THEN 'solved' WHEN 0 THEN 'solving' ELSE 'unsolved' END) as status 
     FROM problem LEFT JOIN solving ON problem.id = solving.problem_id AND user_id='{}' 
     ORDER BY problem.id
-    """.format(session["id"]))
+    """.format(g.user["user_id"]))
     return render_template('main/quest_list.html', category_data = category_data, problem_list = problem_list)
 
 @bp.route('/<int:problem_id>', methods=['GET', 'POST'])
@@ -27,7 +27,7 @@ def problem_show(problem_id):
     problem_data["status"] = wp.send_query("""
     SELECT (CASE solved WHEN 1 THEN 'solved' WHEN 0 THEN 'solving' ELSE 'unsolved' END) as status 
     FROM problem LEFT JOIN solving ON problem.id = solving.problem_id AND user_id = '{}' WHERE id = '{}'
-    """.format(session["id"], problem_id))[0]["status"]
+    """.format(g.user["user_id"], problem_id))[0]["status"]
 
     problem_type = wp.send_query("SELECT type FROM problem WHERE id = {0}".format(problem_id))[0]["type"]
     if(problem_type=="객관식"):

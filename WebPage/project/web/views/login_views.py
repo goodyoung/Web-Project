@@ -76,9 +76,8 @@ def logout():
 def load_logged_in_user():
     log = session.get('logged_in')
     if log:
-        lv = wp.send_query("SELECT Lv FROM user WHERE id = '{}'".format(session.get('id')))
-        exp = wp.send_query("SELECT Exp FROM user WHERE id = '{}'".format(session.get('id')))
-        g.user = {'user_id': session.get('id'), 'lv':int(lv[0]['Lv']), 'Exp':int(exp[0]['Exp'])}
+        g.user = {'user_id': session.get('id')}
+        print(g.user)
     else:
         g.user = None
 

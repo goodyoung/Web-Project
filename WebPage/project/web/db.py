@@ -16,13 +16,8 @@ class SingletonInstance:
 
 class WebProject(SingletonInstance):
 
-    def __init__(self):
-        self.db = connect(host='localhost', user='root', password = 'rjsdud', database='ProjectTest', cursorclass=cursors.DictCursor)
-        self.cursor = self.db.cursor()
-    
-    def connect(self) :
-        self.db = connect(host='localhost', user='root', password = 'rjsdud', database='ProjectTest', cursorclass=cursors.DictCursor)
-        self.cursor = self.db.cursor()
+    def connect(self):
+        self.db = connect(host='localhost', user='root', password = '1111', database='ProjectTest', cursorclass=cursors.DictCursor)
 
     def close(self):
         self.db.close()
@@ -133,27 +128,15 @@ class WebProject(SingletonInstance):
 
         self.connect()
 
-        self.cursor.execute(sql)
-        result = self.cursor.fetchall()
+        cursor = self.db.cursor()
+
+        cursor.execute(sql)
+        result = cursor.fetchall()
         print(result)
 
         if(commit):
             self.db.commit()
 
         self.close()
+        
         return result
-
-    def get_forms(self):
-        from googleapiclient.discovery import build
-        from googleapiclient.http import MediaIoBaseDownload
-        from httplib2 import Http
-        from oauth2client import file
-        import io
-
-        store = file.Storage("/Users/user/Desktop/storage.json")
-        creds = store.get()
-        service = build('drive', 'v3', http=creds.authorize(Http()))
-
-        results = service.files().list(pageSize=100, fields="nextPageToken, files(id, name)").execute
-        items = results.get('files', [])
-        print(items)
