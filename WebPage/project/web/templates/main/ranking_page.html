@@ -1,5 +1,79 @@
 {% extends 'main_template.html' %}
 {% block content %}
 <script> document.querySelector(".ranking_link").classList.add("selected") </script>
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./leaderboard/leaderboard.css') }}">
+<body>
+    <header class = "displays">
+            <div class = "headers"></div>
+            
+            <div class="headers2">
+                <div class ="headers3">
+                    <img src="{{url_for('static',filename='./leaderboard/leaderboard_ui/leaderboard.gif')}}" class = 'wo'>
+                    <div class = "displays headsize">
+                        <span class="username">GOGOGO!</span>
+                        <div class = "size1">
+                            <input class="questionbox imgquetion" placeholder="내 별명이요">                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <section class = "displays">
+
+        <div class="board1">
+            <div class="ro rodisplay">
+                <span class="rotext">순위</span>
+                <span class="rotext">별명</span>
+                <span class="rotext">레벨</span>
+                <span class="rotext">경험치</span>
+            </div>
+        </div>
+        <!-- lanking 표시 ,-->
+        <div class="board2 displays">
+            
+            {%for item in user_rank['item']%}
+                <div class="leaders">
+                    {% if loop.index <4 %}
+                        <img class = "imgleader imgleader{{loop.index}}">
+                    {% else %}
+                        <div class = 'leadertext'> {{loop.index}} </div> 
+                    {% endif %}
+                    {%for k in item.values()%}
+                        <div class="leadertext">{{ k }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="board3">
+            <div class="move">
+                <a class="atag" href="?page=1">맨앞</a>
+
+                {% for page_num in user_rank['max_page'] %}
+                    {% if page_num == user_rank['page'] %}
+                            <a class="pagebox" href="?page={{ page_num }}"> {{page_num}}</a>
+                    {% elif -2 < page_num - user_rank.page < 2 %}
+                            <a class="pagebox" href="?page={{ page_num }}"> {{page_num}}</a>
+                    {% endif %}
+                {% endfor %}
+        
+                <a class="atag" href="?page={{ user_rank['max_page'][-1] }}">맨뒤</a>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </section>
+
+</body>
+
+
 
 {% endblock %}
