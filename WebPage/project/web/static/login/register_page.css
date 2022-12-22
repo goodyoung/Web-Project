@@ -3,21 +3,20 @@ body{
 
     width:360px;
     height:640px;
-
     border: solid;
-}
 
+}
+/*      */
 body *{
     box-sizing: border-box;
 }
 
 header{
-    position: absolute;
-    left:0px;
-    top:0px;
-
+    display: flex;
+    justify-content: center;
+    height:100px;
     width:100%;
-
+    margin-top:inherit;
     margin:0;
     padding: 0;
 }
@@ -61,7 +60,7 @@ header{
 }
 
 section{
-    margin-top: 120px;
+    margin-top: 0px;
 }
 
 .join {
@@ -74,7 +73,7 @@ section{
 
 .join_title {
     display: flex;
-    justify-content:flex-start ;
+    justify-content:center;
     align-items:flex-start;
 
     padding: 0px 38px 10px;
@@ -139,9 +138,8 @@ section{
 .join_submitButton {
     width: 83%;
     height: auto;
-    background: rgba(223,132,132,1);
     opacity: 1;
-    
+    background: #99CD89;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -154,5 +152,9 @@ section{
     border-bottom-right-radius: 10px;
     overflow: hidden;
 }
-
+/*     background: rgba(223,132,132,1); */
+.validate{
+    font-size: 13px;
+    margin-left: 25px;
+}
 

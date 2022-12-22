@@ -17,11 +17,11 @@ class SingletonInstance:
 class WebProject(SingletonInstance):
 
     def __init__(self):
-        self.db = connect(host='localhost', user='root', password = '1111', database='ProjectTest', cursorclass=cursors.DictCursor)
+        self.db = connect(host='localhost', user='root', password = 'rjsdud', database='ProjectTest', cursorclass=cursors.DictCursor)
         self.cursor = self.db.cursor()
     
     def connect(self) :
-        self.db = connect(host='localhost', user='root', password = '1111', database='ProjectTest', cursorclass=cursors.DictCursor)
+        self.db = connect(host='localhost', user='root', password = 'rjsdud', database='ProjectTest', cursorclass=cursors.DictCursor)
         self.cursor = self.db.cursor()
 
     def close(self):

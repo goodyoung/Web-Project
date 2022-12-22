@@ -5,30 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = 'stylesheet' href = "{{url_for('static',filename='register_page.css')}}"/>
+    <link rel = 'stylesheet' href = "{{url_for('static',filename='./login/register_page.css')}}"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <title>회원가입</title>
+    <script src = "{{url_for('static',filename='./login/login_form.js')}}"> </script>
 </head>
 <body>
+    <header height = "100px">
+        <div style = "height: 100px">
+            <img src="{{url_for('static',filename='./login/login_ui/register_sprout.gif')}}" width="110px" height = "100%" style = "margin-right:5px">
+        </div>
+    </header>
+
     <section>
-    <img src =  "{{url_for('static',filename='logoyogo-1-69.jpeg')}}">
       <form action="{{ url_for('login.register_page') }}" method="post">
         <div class="join">
             <div class="join_title">회원가입</div>        
             <div class="join_input">            
-                <input class="join_inputBox" placeholder="이름" type="text" name = 'username'>
+                <label for="username"></label>
+                <input class="join_inputBox" placeholder="이름" type="text" name = 'username' >
+                <div class = "validate" id = 'validate' name='이름'> </div>
+
+                <label for="userid"></label>
                 <input class="join_inputBox" placeholder="별명" type="text" name = 'userid'>
+                <div class = "validate"  id = 'validate' name='별명'> </div>
+
+                <label for="userpw"></label>
                 <input class="join_inputBox" placeholder="비밀번호" type="password" name = 'userpw'>
+                <div class = "validate" id = 'validate' name='비밀번호'> </div>
             </div>            
+            
             <div class="join_submit">
-                <input class="join_submitButton" type = 'submit' value = "가입 완료" />
+                <input class="join_submitButton" type = 'submit' style = "border:0px"value = "가입 완료" />
+
+                {{ form.csrf_token }}
+                {% include "form_errors.html" %}
+                
       </form>
+
                 <p style="font-size:11px;">가입하면
-                    <span style="color:red;">이용약관</span>과
-                    <span style="color:red;">개인정보취급방침</span>에 동의 한 것으로 봅니다.
+                    <span style="color:#4DAB3C;">이용약관</span>과
+                    <span style="color:#4DAB3C;">개인정보취급방침</span>에 동의 한 것으로 봅니다.
                 </p>
+
             </div>
         </div>  
     </section>
 </body>
 </html> 
+
