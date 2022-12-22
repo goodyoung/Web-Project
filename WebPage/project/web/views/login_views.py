@@ -77,7 +77,6 @@ def load_logged_in_user():
     log = session.get('logged_in')
     if log:
         g.user = {'user_id': session.get('id')}
-        print(g.user)
     else:
         g.user = None
 
