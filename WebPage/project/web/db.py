@@ -130,6 +130,7 @@ class WebProject(SingletonInstance):
         return rows
 
     def send_query(self, sql, commit=False):
+
         self.connect()
 
         self.cursor.execute(sql)
@@ -141,3 +142,18 @@ class WebProject(SingletonInstance):
 
         self.close()
         return result
+
+    def get_forms(self):
+        from googleapiclient.discovery import build
+        from googleapiclient.http import MediaIoBaseDownload
+        from httplib2 import Http
+        from oauth2client import file
+        import io
+
+        store = file.Storage("/Users/user/Desktop/storage.json")
+        creds = store.get()
+        service = build('drive', 'v3', http=creds.authorize(Http()))
+
+        results = service.files().list(pageSize=100, fields="nextPageToken, files(id, name)").execute
+        items = results.get('files', [])
+        print(items)
