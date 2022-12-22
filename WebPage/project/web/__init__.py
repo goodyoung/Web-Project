@@ -21,6 +21,10 @@ def create_app():
     def connectSheet():
         return wp.connect_sheet() 
 
+    @app.route('/connectForm')
+    def connectForm():
+        return wp.connect_form()
+
     @app.route('/getID')
     def get_ID():
         return session["id"]

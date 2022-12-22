@@ -20,7 +20,7 @@
         <div class="problem_show">
             <div class="problem_type">{{ problem_data["problem"]["type"] }}</div>
             <div class="problem_content">
-                {{ problem_data["problem"]["content"] }}
+                {{ problem_data["problem"]["content"]|safe }}
             </div>
         </div>
         {% if problem_data["status"] != "solved" %}

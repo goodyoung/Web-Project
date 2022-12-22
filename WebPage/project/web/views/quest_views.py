@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, g
 from ..db import WebProject
+from markupsafe import Markup
 
 bp = Blueprint('quest', __name__, url_prefix='/quest')
 wp = WebProject.instance()
@@ -36,5 +37,18 @@ def problem_show(problem_id):
         sql = "SELECT problem.*, subjective.answer FROM problem INNER JOIN subjective ON problem.id = subjective.id WHERE problem.id = {}".format(problem_id)
     
     problem_data["problem"] = wp.send_query(sql)[0]
+
+    print(problem_data["problem"])
+
+    for key, val in problem_data["problem"].items():
+        if(type(val)==str):
+            val = val.replace("\'\'", "\'")
+            val = val.replace("\"\"", "\"")
+            problem_data["problem"][key] = val
+            
+    problem_data["problem"]["content"] = problem_data["problem"]["content"].replace("\n", "<br>")
+    problem_data["problem"]["answer"] = problem_data["problem"]["content"].replace("\n", "<br>")
+
+    print(problem_data["problem"])
 
     return render_template("main/quest_show.html", problem_data=problem_data)
