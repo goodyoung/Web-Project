@@ -11,21 +11,6 @@
     <script src = "{{url_for('static',filename='./login/login_form.js')}}"> </script>
 </head>
 <body>
-
-<!--{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <script>alert("{{message}}")</script>
-        {% endfor %}
-    {% endif %}
-{% endwith %}-->
-
-{% for message in get_flashed_messages() %}
-<div class="alert alert-danger" role="alert">
-    <script>alert("{{message}}")</script>
-</div>
-{% endfor %}
-
     <header height = "100px">
         <div style = "height: 100px">
             <img src="{{url_for('static',filename='./login/login_ui/register_sprout.gif')}}" width="110px" height = "100%" style = "margin-right:5px">
@@ -54,14 +39,8 @@
                 <input class="join_submitButton" type = 'submit' style = "border:0px"value = "가입 완료" />
 
                 {{ form.csrf_token }}
-                {% if form.errors %}
-                <div class="alert alert-danger" role="alert">
-                    {% for field, errors in form.errors.items() %}
-                    <strong id = 'te'>{{ form[field].label }}</strong>
-                    <script> tr()</script>
-                    {% endfor %}
-                </div>
-                {% endif %}
+                {% include "form_errors.html" %}
+                
       </form>
 
                 <p style="font-size:11px;">가입하면

@@ -37,10 +37,15 @@ body {
 
 .login {
     width: 298.8px;
-    height: 27px;
-    background: #71BC66;
+    height: 48px;
     border:0px;
-    text-align:left;
+    margin-bottom: 16px;
+    background: #F1F8F0;
+    text-align: center;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
 }
 
 
@@ -51,8 +56,8 @@ body {
     border:0px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     opacity: 0.7px;
+    
 }
 
 .name {
@@ -89,7 +94,6 @@ body {
 
 .a {
     color: black;
-    text-decoration-line: none;
 }
 
 .divdisplay{
