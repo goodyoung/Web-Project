@@ -1,0 +1,102 @@
+body *{
+    box-sizing: border-box;
+}
+body {
+    font-size: 14px;
+    position: relative;
+    width:360px;
+    height:640px;
+    border: solid;
+}
+.divbody {
+    width:360px;
+    height:640px;
+    background: #99CD89;
+}
+
+
+
+.divone {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+}
+
+.inputbox {
+    width: 298.8px;
+    height: 27px;
+    background: rgba(217, 217, 217, 1);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border: 0px;
+}
+
+
+.login {
+    width: 298.8px;
+    height: 27px;
+    background: #71BC66;
+    border:0px;
+    text-align:left;
+}
+
+
+.register {
+    width: 298.8px;
+    height: 27px;
+    background-color: #71BC66;
+    border:0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0.7px;
+}
+
+.name {
+    color: #fff;
+}
+
+
+.char {
+    width: 230px;
+    margin-top:75px;
+}
+
+.displaycenter{
+    display: flex;
+    justify-content: center;   
+}
+
+.display{
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+}
+.textmargin{
+    font-size: 16px;
+    margin-left: 33px;
+    margin-bottom: 8px;
+}
+.box{
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.a {
+    color: black;
+    text-decoration-line: none;
+}
+
+.divdisplay{
+    display:flex;
+    flex-direction: column;
+}
+.validate{
+    margin-top: 8px;
+    margin-left: 3px;
+}

@@ -3,10 +3,10 @@ body{
 
     width:360px;
     height:640px;
-
     border: solid;
-}
 
+}
+/*      */
 body *{
     box-sizing: border-box;
 }
@@ -138,9 +138,8 @@ section{
 .join_submitButton {
     width: 83%;
     height: auto;
-    background: rgba(223,132,132,1);
     opacity: 1;
-    
+    background: #99CD89;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -153,7 +152,9 @@ section{
     border-bottom-right-radius: 10px;
     overflow: hidden;
 }
+/*     background: rgba(223,132,132,1); */
 .validate{
     font-size: 13px;
     margin-left: 25px;
 }
+
