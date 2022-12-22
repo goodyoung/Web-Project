@@ -37,6 +37,8 @@ class WebProject(SingletonInstance):
             for problem in problems:
                 problem_dict = {}
                 print(problem)
+                if(len(problem)!=9):
+                    continue
 
                 problem_dict["id"] = problem[0]
                 problem_dict["type"] = problem[1]

@@ -12,46 +12,61 @@
             <p class="problem_id">{{ problem_data["problem"]["id"] }}</p>
         </div>
             <div class="problem_category">{{ problem_data["problem"]["category"] }}</div>
+            <div class="problem_type" style="display: none;">{{ problem_data["problem"]["type"] }}</div>
     </div>
 </header>
 
 <section>
     <div class="main">
-        <div class="problem_show">
-            <div class="problem_type">{{ problem_data["problem"]["type"] }}</div>
-            <div class="problem_content">
-                {{ problem_data["problem"]["content"]|safe }}
-            </div>
-        </div>
-        {% if problem_data["status"] != "solved" %}
-        <div class="answer_input">
-            {% if problem_data["problem"]["type"]=="객관식" %}
-            <ol>
-                {% for choice in problem_data["problem"]["choices"].split("\n") %}
-                <li> <label><input type="radio" class="problem_answer" name="answer" value="{{ loop.index }}">{{ choice }}</label></li>
-                {% endfor %}
-            </ol>
-            {% else %}
-            <input type="text" placeholder="정답 입력" class="problem_answer">
-            {% endif %}
-            <button class="answer_commit">정답 확인</button>
-        </div>
-        {% else %}
-        <div class="answer_explaination">
-            <div class="answer_correct">
-                {% if problem_data["problem"]["type"]=="객관식" %}
-                    정답 : {{ problem_data["problem"]["choices"].split("\n")[ problem_data["problem"]["answer"]|int-1 ] }}
-                {% else %}
-                    정답 : {{ problem_data["problem"]["answer"]}}
-                {% endif %}
-            </div>
-            <div class="answer_explain">
-                {{ problem_data["problem"]["explanation"] }}
-            </div>
-        </div>
-        {% endif %}
+        <pre class="problem_content">{{ problem_data["problem"]["content"]|safe }}</pre>
     </div>
+    
 </section>
 
-    
+<footer>
+    {% if problem_data["problem"]["type"]=="객관식" %}
+    <ol class="problem_answer">
+        {% for choice in problem_data["problem"]["choices"].split("\n") %}
+        <li> <label class="answer_choice"><input type="radio" name="answer" value="{{ loop.index }}">{{ choice }}</label></li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <input type="text" placeholder="정답 입력" class="problem_answer">
+    {% endif %}
+    {% if problem_data.status == "solved" %}
+    <pre class="answer_explanation deactivate">{{ problem_data ["problem"]["explanation"]|safe }}</pre>
+    <button class="answer_show">해설보기</button>
+    {% else %}
+    <button class="answer_commit">제출하기</button>
+    {% endif %}
+</footer>
+
+<div class="modal correct_modal">
+    <div class="top-content">
+        정답입니다!
+    </div>
+    <div class="bottom-content">
+        <img src="../static/ui/correct.png" class="modal_img">
+        <button class="modal_close">확인</button>
+    </div>
+ </div>
+
+ <div class="modal incorrect_modal">
+    <div class="top-content">
+        오답입니다..
+    </div>
+    <div class="bottom-content">
+        <img src="../static/ui/incorrect.png" class="modal_img">
+        <button class="modal_close">확인</button>
+    </div>
+ </div>
+
+ <div class="modal error_modal">
+    <div class="top-content">
+        정답을 입력해주세요.
+    </div>
+    <div class="bottom-content">
+        <button class="modal_close">확인</button>
+    </div>
+ </div>
 {% endblock %}

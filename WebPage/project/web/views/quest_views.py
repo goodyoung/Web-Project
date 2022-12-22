@@ -21,7 +21,20 @@ def quest_list():
 @bp.route('/<int:problem_id>', methods=['GET', 'POST'])
 def problem_show(problem_id):
     if(request.method == "POST"):
-        pass
+        params = request.get_json()
+
+        result = wp.send_query("SELECT CASE WHEN answer = '{}' THEN TRUE ELSE FALSE END AS success FROM {} WHERE id = {}".format(params["answer"], params["type"], params["problem_id"]))
+
+        is_exist = wp.send_query("SELECT EXISTS (SELECT * FROM solving WHERE user_id = '{}' AND problem_id = {}) as success".format(g.user["user_id"], params["problem_id"]))
+
+        if(is_exist[0]["success"]):
+            wp.send_query("UPDATE solving SET solved = {} WHERE user_id = '{}' AND problem_id = {}".format(result[0]["success"], g.user["user_id"], params["problem_id"]), commit=True)
+        else:
+            wp.send_query("INSERT INTO solving(solved, user_id, problem_id) VALUES ('{}', '{}', {})".format(result[0]["success"], g.user["user_id"], params["problem_id"]), commit=True)
+        
+        
+        return result
+        
     
     problem_data = {}
 
@@ -46,8 +59,8 @@ def problem_show(problem_id):
             val = val.replace("\"\"", "\"")
             problem_data["problem"][key] = val
             
-    problem_data["problem"]["content"] = problem_data["problem"]["content"].replace("\n", "<br>")
-    problem_data["problem"]["answer"] = problem_data["problem"]["content"].replace("\n", "<br>")
+    # problem_data["problem"]["content"] = problem_data["problem"]["content"].replace("\n", "<br>")
+    # problem_data["problem"]["explanation"] = problem_data["problem"]["explanation"].replace("\n", "<br>")
 
     print(problem_data["problem"])
 
