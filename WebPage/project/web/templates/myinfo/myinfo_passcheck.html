@@ -1,0 +1,50 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo.css') }}">
+<script src = "{{url_for('static',filename='./login/login_form.js')}}"> </script>
+
+<body>
+    <div class="myinfo">
+        <div class="myinfopasscheck_top">
+            <div class="myinfopasscheck_name">비밀번호 재확인</div>
+            <div>회원님의 소중한 정보를 위해 비밀번호를 재확인하고있어요.</div>
+        </div>
+        <div class="myinfopasscheck_content">
+            <div class="myinfopasscheck_content_set">
+                <div class="myinfopasscheck_content_title">
+                    별명
+                </div>
+                <div class="myinfopasscheck_content_sub">
+                    Growup
+                </div>
+            </div>
+            <form action="{{ url_for('myinfo.password') }}" method="post">
+
+                <div class="myinfopasscheck_content_set">
+                    
+                    <div class="myinfopasscheck_content_title" >
+                        비밀번호
+                    </div>
+
+                    <label for="userpw2"></label>
+                    <div class="myinfopasscheck_content_sub">
+                        <input type="password" name="userpw2"/>
+                        <div class = "validate"  id = 'validate' name='비밀번호'> </div>
+                    </div>
+                </div>   
+
+                <div class="myinfopasscheck_content_set">
+                    <input type="submit" class="myinfopasscheck_submit" value="다음"/>
+                </div>    
+                <!-- 필드 / flash 오류 -->
+                {{ form.csrf_token }}
+                {% include "form_errors.html" %}
+
+            </form>
+
+        </div>
+    </div>
+</body>
+{% endblock %}

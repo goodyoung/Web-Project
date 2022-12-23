@@ -1,0 +1,44 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<script> document.querySelector(".setting_link").classList.add("selected") </script>
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo.css') }}">
+
+<body>
+    <div class="myinfo">
+        <div class="myinfo_top">
+            <div class="myinfo_name">
+                <div>GROWUP 님</div>
+            </div>
+        <div class="myinfo_content">
+            
+            <div class="myinfo_content_set">
+                <div class="myinfo_content_title">
+                    내계정                    
+                </div>
+                <a href="{{ url_for('myinfo.password') }}" class="myinfo_content_sub">
+                    설정
+                </a>
+            </div>
+
+            <div class="myinfo_content_set">
+                <div class="myinfo_content_title">
+                    ABOUT Growupteam
+                </div>
+                <a href="{{ url_for('myinfo.notice') }}" class="myinfo_content_sub">
+                    공지사항
+                </a>
+            </div>   
+
+            <div class="myinfo_content_set">
+                <a href="{{ url_for('login.logout') }}" class="myinfo_logout">
+                    로그아웃 하기
+                </a>
+            </div>   
+
+        </div>
+    </div>
+    
+</body>
+{% endblock %}

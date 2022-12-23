@@ -1,0 +1,57 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo_notice_content.css') }}">
+<body>
+    <div class = "notice">
+        <header>
+            <div class = "headers"></div>
+            <div class="head">공지사항</div>
+            <div class="border"></div>
+        </header>
+
+        <main>
+            <div class="content">
+
+                <div class="li">
+                    <div class="datetime"> {{contented['content']['title']}}</div>
+                    <div class="datetime"> {{contented['content']['date']}}</div>
+                    <div class="textcon">{{contented['content']['title']}}</div>
+                    <div class="textcon">{{contented['content']['content']}}</div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="pagecon">
+            {% if contented.page == 1 %}
+                <div class="next">
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page+1 ) }}" class = "text">다음글</a>
+                </div>
+
+                <div class="prev">
+                    <span>이전글</span>
+                    <span>(없음)</span>
+                </div>
+            {% elif contented.max_page == contented.page %}
+                <div class="next">
+                    <span>다음글</span>
+                    <span>(없음)</span>
+                </div>
+
+                <div class="prev">
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page-1 ) }}" class = "text">이전글</a>
+                </div>
+            {% else %}
+                <div class="next">
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page+1 ) }}" class = "text">다음글</a>
+                </div>
+
+                <div class="prev">
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page-1 ) }}" class = "text">이전글</a>
+                </div>
+            {% endif %}
+        </footer>
+    </div>
+</body>
+{% endblock %}
+
+
