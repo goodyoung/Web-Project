@@ -1,5 +1,37 @@
 {% extends 'main_template.html' %}
 {% block content %}
 <script> document.querySelector(".main_link").classList.add("selected") </script>
-<img src="{{url_for('static',filename='main_char1.gif')}}" class="char">
+
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='main_page.css') }}">
+<script defer src="{{ url_for('static', filename='main_page.js') }}"></script>
+<div class="all">
+    <header class = "displays"> 
+        <div class = "headers"></div>
+    </header>
+    <main>
+        <div class="back">
+            <div class="character_info">
+                <div class="character_lv">Lv.<label style="font-size:30pt">1</label></div>
+                <div class="character_detail">
+                    <div class="character_name">{{ g.user["user_id"]}}님</div>
+                    <progress value="90" max="100" id="progress"></progress>
+                </div>
+            </div>
+            <div class="character_show">
+                <div class="character_img">
+                    <img class="char" src="{{ url_for('static', filename='ui/mk5.gif') }}"></img>
+                </div>
+                <div class="mission">
+                    <p>오늘의 미션</p>
+                    <div class="mission_solved"><label style="font-size:50pt">0</label>/3</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="todo">
+            TODO
+        </div>
+    </footer>
+</div>
 {% endblock %}

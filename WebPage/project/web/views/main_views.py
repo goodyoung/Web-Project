@@ -8,6 +8,7 @@ def main_page():
     log = session.get('logged_in')
     if log:
         # 로그인 중이면
+        
         return render_template('main/main_page.html')
     else:
         # 로그인 정보가 없으면

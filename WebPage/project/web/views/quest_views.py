@@ -23,6 +23,7 @@ def quest_list():
 def problem_show(problem_id):
     if(request.method == "POST"):
         params = request.get_json()
+        # send = {}
 
         result = wp.send_query("SELECT CASE WHEN answer = '{}' THEN TRUE ELSE FALSE END AS success FROM {} WHERE id = {}".format(params["answer"], params["type"], params["problem_id"]))
 
@@ -33,6 +34,9 @@ def problem_show(problem_id):
         else:
             wp.send_query("INSERT INTO solving(solved, user_id, problem_id) VALUES ('{}', '{}', {})".format(result[0]["success"], g.user["user_id"], params["problem_id"]), commit=True)
         
+        # send["result"] = result[0]["result"]
+        
+
         return json.dumps(result)
         
     
