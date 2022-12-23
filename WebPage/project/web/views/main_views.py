@@ -1,14 +1,16 @@
 from flask import Blueprint, render_template, redirect, url_for, session, g, request
-from ..db import WebProject
+from ..db import WebProject, exp_manager
+
 bp = Blueprint('main', __name__, url_prefix='/')
 wp = WebProject.instance()
+em = exp_manager.instance()
 
 @bp.route('/')
 def main_page():
     log = session.get('logged_in')
     if log:
         # 로그인 중이면
-        
+        em.daily_exist(g.user["user_id"])
         return render_template('main/main_page.html')
     else:
         # 로그인 정보가 없으면

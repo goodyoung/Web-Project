@@ -39,7 +39,7 @@ async function check_answer(){
             return;}
     }
 
-    let correct = await fetch(window.location.href, {
+    let response = await fetch(window.location.href, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -51,14 +51,22 @@ async function check_answer(){
         }),
         }).then((response) => response.json());
 
-    if(correct[0]["success"]){
-        console.log("정답입니다!")
-        document.querySelector('.correct_modal').classList.toggle("show");
+    if(response["can_exp"]){
+        if(response["success"]){
+            console.log("정답입니다!")
+            document.querySelector(".obtained_exp").innerText = response["exp"]
+            document.querySelector('.correct_modal').classList.toggle("show");
+        }
+        else{
+            console.log("오답입니다.")
+            document.querySelector('.incorrect_modal').classList.toggle("show");
+        } 
     }
     else{
-        console.log("오답입니다.")
-        document.querySelector('.incorrect_modal').classList.toggle("show");
-    } 
+        console.log("더이상 경험치를 얻을 수 없습니다.")
+        document.querySelector('.limit_modal').classList.toggle("show");
+    }
+    
     return
 }
 
@@ -100,11 +108,23 @@ window.onload = function () {
     }
 
     for (let close_button of document.querySelectorAll('.modal_close')){
-        close_button.addEventListener('click', () => {
-            console.log(close_button.parentNode.parentNode)
-            close_button.parentNode.parentNode.classList.toggle("show");
-            window.location.reload() 
-        });
+
+        let target_modal = close_button.parentNode.parentNode
+        if(target_modal.classList.contains("chk_lvup")){
+            close_button.addEventListener('click', async function() {
+                target_modal.classList.toggle("show");
+                
+                is_lvup = await check_lvup()
+                if(!is_lvup) window.location.reload();
+            });
+        }
+        else{
+            close_button.addEventListener('click', () => {
+                target_modal.classList.toggle("show");
+                window.location.reload() 
+            });
+        }
+        
     }
 
     set_content_height()

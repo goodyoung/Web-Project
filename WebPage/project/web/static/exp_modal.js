@@ -14,3 +14,12 @@ function level_up(current_lv){
     document.querySelector(".current_lv").innerText = current_lv
     document.querySelector(".level-up").classList.toggle("show")
 }
+
+async function check_lvup(){
+    let is_getexp = await fetch("/chk_lvup").then((response) => response.json())
+    if(is_getexp["lv"]>0){
+        level_up(is_getexp["lv"]);
+        return true
+    }
+    else return false;
+}

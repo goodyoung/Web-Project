@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request, session
-from web.db import WebProject
+from flask import Flask, render_template, request, session, g
+from web.db import WebProject, exp_manager
 import json
 
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'secretkeys'
     wp = WebProject.instance()
+    em = exp_manager.instance()
 
     from .views import login_views, main_views, quest_views, myinfo_views
     app.register_blueprint(main_views.bp)
@@ -27,9 +28,11 @@ def create_app():
     def connectForm():
         return json.dumps(wp.connect_form())
 
-    @app.route('/getID')
-    def get_ID():
-        return session["id"]
+    @app.route('/chk_lvup')
+    def check_lvup():
+        is_lvup = {}
+        is_lvup["lv"] = em.check_lvup(g.user["user_id"])
+        return json.dumps(is_lvup)
 
 
     return app
