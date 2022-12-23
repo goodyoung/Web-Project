@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, g
 from ..db import WebProject
 from markupsafe import Markup
+import json
 
 bp = Blueprint('quest', __name__, url_prefix='/quest')
 wp = WebProject.instance()
@@ -32,8 +33,7 @@ def problem_show(problem_id):
         else:
             wp.send_query("INSERT INTO solving(solved, user_id, problem_id) VALUES ('{}', '{}', {})".format(result[0]["success"], g.user["user_id"], params["problem_id"]), commit=True)
         
-        
-        return result
+        return json.dumps(result)
         
     
     problem_data = {}

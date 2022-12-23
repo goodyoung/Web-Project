@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session
 from web.db import WebProject
+import json
 
 def create_app():
     app = Flask(__name__)
@@ -19,11 +20,11 @@ def create_app():
 
     @app.route('/connectSheet')
     def connectSheet():
-        return wp.connect_sheet() 
+        return json.dumps(wp.connect_sheet())
 
     @app.route('/connectForm')
     def connectForm():
-        return wp.connect_form()
+        return json.dumps(wp.connect_form())
 
     @app.route('/getID')
     def get_ID():
