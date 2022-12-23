@@ -41,12 +41,13 @@
     {% endif %}
 </footer>
 
-<div class="modal correct_modal">
+<div class="modal correct_modal chk_lvup">
     <div class="top-content">
         정답입니다!
     </div>
     <div class="bottom-content">
         <img src="../static/ui/correct.png" class="modal_img">
+        <p class="modal_text">경헙치를 <label class="obtained_exp"></label>획득하셨습니다.</p>
         <button class="modal_close">확인</button>
     </div>
  </div>
@@ -57,6 +58,7 @@
     </div>
     <div class="bottom-content">
         <img src="../static/ui/incorrect.png" class="modal_img">
+        <p class="modal_text">다시 시도해보세요ㅜㅜ</p>
         <button class="modal_close">확인</button>
     </div>
  </div>
@@ -64,6 +66,15 @@
  <div class="modal error_modal">
     <div class="top-content">
         정답을 입력해주세요.
+    </div>
+    <div class="bottom-content">
+        <button class="modal_close">확인</button>
+    </div>
+ </div>
+
+ <div class="modal limit_modal">
+    <div class="top-content">
+        더이상 경험치를 획득하실 수 없습니다.
     </div>
     <div class="bottom-content">
         <button class="modal_close">확인</button>

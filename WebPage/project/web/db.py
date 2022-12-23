@@ -3,6 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import requests
 import re
 import os
+from datetime import date
+
 
 class SingletonInstance:
     __instance = None
@@ -20,7 +22,7 @@ class SingletonInstance:
 class WebProject(SingletonInstance):
 
     def connect(self):
-        self.db = connect(host='localhost', user='root', password = 'rjsdud', database='ProjectTest', cursorclass=cursors.DictCursor)
+        self.db = connect(host='localhost', user='root', password = '1111', database='ProjectTest', cursorclass=cursors.DictCursor)
 
     def close(self):
         self.db.close()
@@ -175,3 +177,73 @@ class WebProject(SingletonInstance):
         self.close()
         
         return result
+
+
+class exp_manager(SingletonInstance):
+    
+    exp_dict = {
+        "quest_solve" : 20,
+        "todo_write" : 2,
+        "todo_complete" : 5
+    }
+
+    limit_dict = {
+        "quest_solve" : 3,
+        "todo_write" : 5,
+        "todo_complete" : 5
+    }
+
+    lvup_dict = {
+        1 : 100,
+        2 : 300,
+        3 : 500,
+        4 : 1000,
+        5 : 2000
+    }
+
+    def __init__(self):
+        self.db = WebProject.instance()
+
+    def daily_exist(self, user_id):
+        today = date.today().isoformat()
+
+        is_exists = self.db.send_query("SELECT EXISTS (SELECT * FROM daily WHERE user_id = '{}' AND date = '{}') as success".format(user_id, today))
+
+        if(is_exists[0]["success"]):
+            print("존재함!")
+        else:
+            print("존재 안함!")
+            print("INSERT INTO daily(user_id, quest_solve, todo_write, todo_complete, date) VALUES ('{}', {}, {}, {}, '{}')".format(user_id, self.limit_dict["quest_solve"], self.limit_dict["todo_write"], self.limit_dict["todo_complete"], today))
+            self.db.send_query("INSERT INTO daily(user_id, quest_solve, todo_write, todo_complete, date) VALUES ('{}', {}, {}, {}, '{}')".format(user_id, 0, 0, 0, today), commit=True)
+
+        return (is_exists[0]["success"])
+
+    def check_lvup(self, user_id):
+        user = self.db.send_query("SELECT user_Lv, user_Exp FROM user WHERE id = '{}'".format(user_id))[0]
+
+        if(self.lvup_dict[user["user_Lv"]]<=user["user_Exp"]):
+            self.db.send_query("UPDATE user SET user_Exp = user_Exp - {}, user_Lv = user_Lv + 1 WHERE id = '{}'".format(self.lvup_dict[user["user_Lv"]], user_id), commit=True)
+            return user["user_Lv"]+1
+
+        return 0
+
+    def can_exp(self, user_id, act):
+        today = date.today().isoformat()
+
+        can_exp = self.db.send_query("SELECT {} FROM daily WHERE user_id = '{}' AND date = '{}'".format(act, user_id, today))
+        if(can_exp[0][act] < self.limit_dict[act]):
+            return True
+
+        return False
+
+    def gain_exp(self, user_id, act):
+        today = date.today().isoformat()
+        exp = self.exp_dict[act]
+
+        if(self.can_exp(user_id, act)):
+            self.db.send_query("UPDATE daily SET {} = {} + 1 WHERE user_id = '{}' AND date = '{}'".format(act, act, user_id, today), commit=True)
+            self.db.send_query("UPDATE user SET user_Exp = user_Exp + {} WHERE id = '{}'".format(exp, user_id), commit=True)
+            return True
+
+        return False
+

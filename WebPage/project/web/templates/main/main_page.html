@@ -11,10 +11,10 @@
     <main>
         <div class="back">
             <div class="character_info">
-                <div class="character_lv">Lv.<label style="font-size:30pt">1</label></div>
+                <div class="character_lv">Lv.<label style="font-size:30pt">{{ main_data["lv"] }}</label></div>
                 <div class="character_detail">
                     <div class="character_name">{{ g.user["user_id"]}}님</div>
-                    <progress value="90" max="100" id="progress"></progress>
+                    <progress value="{{ main_data['exp'] }}" max="{{ main_data['max_exp'] }}" id="progress"></progress>
                 </div>
             </div>
             <div class="character_show">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mission">
                     <p>오늘의 미션</p>
-                    <div class="mission_solved"><label style="font-size:50pt">0</label>/3</div>
+                    <div class="mission_solved"><label style="font-size:50pt">{{ main_data["mission"] }}</label>/3</div>
                 </div>
             </div>
         </div>
