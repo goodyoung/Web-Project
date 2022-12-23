@@ -1,11 +1,14 @@
 {% extends 'main_template.html' %}
 {% block content %}
 <script> document.querySelector(".ranking_link").classList.add("selected") </script>
+
+
 <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./leaderboard/leaderboard.css') }}">
 <body>
     <header class = "displays">
-            <div class = "headers"></div>
-            
+            <div class = "headers"> 
+                    <a href="?page={{ user_rank['mypage']}}"> 내꺼 보깅 </a>
+            </div>
             <div class="headers2">
                 <div class ="headers3">
                     <img src="{{url_for('static',filename='./leaderboard/leaderboard_ui/leaderboard.gif')}}" class = 'wo'>
@@ -33,11 +36,20 @@
             
             {%for item in user_rank['item']%}
                 <div class="leaders">
-                    {% if loop.index <4 %}
-                        <img class = "imgleader imgleader{{loop.index}}">
+                    {% if user_rank['page'] == 1 %}
+
+                        {% if loop.index <4 %}
+                            <img class = "imgleader imgleader{{loop.index}}" id = "rank{{loop.index}}">
+                        {% else %}
+                            <div class = 'leadertext' id = 'rank'> {{loop.index + (user_rank['page']-1)*10}} </div> 
+                        {% endif %}
+
                     {% else %}
-                        <div class = 'leadertext'> {{loop.index}} </div> 
+                        <div class = 'leadertext' id = 'rank'> {{loop.index + (user_rank['page']-1)*10}} </div> 
                     {% endif %}
+
+
+
                     {%for k in item.values()%}
                         <div class="leadertext">{{ k }}</div>
                     {% endfor %}
@@ -60,17 +72,36 @@
         
                 <a class="atag" href="?page={{ user_rank['max_page'][-1] }}">맨뒤</a>
             </div>
-
-
-
-
-
-
-
-
         </div>
 
     </section>
+
+    <script> 
+        {% if user_rank['myinfo'] < 4 %}
+                function myinfo(myinfos){
+                    let dom = document.querySelector(`#rank${myinfos}`)
+                    dom.parentNode.style.border = "1.5px solid pink"
+                }
+        {% else %}
+            function myinfo(myinfos){
+
+                console.log('dgasdgasdg')
+                let rank = document.querySelectorAll('#rank')
+                console.log(myinfos)
+                rank.forEach( i => {
+                    if (i.innerText ==myinfos){
+                        i.parentNode.style.border = "1.5px solid black"
+                    }
+                })
+        
+            }
+        
+        {% endif %}
+        myinfo({{ user_rank['myinfo'] }} )
+
+    </script>
+
+
 
 </body>
 
