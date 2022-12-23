@@ -157,6 +157,12 @@ section{
     padding : 3px 5px 5px 5px;
 }
 
+.problem_content > img{
+    max-width: 100%;
+    height: auto;
+    margin : 10px 0;
+}
+
 footer{
     position:absolute;
     bottom:50px;
