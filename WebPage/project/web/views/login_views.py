@@ -72,6 +72,12 @@ def logout():
     session['logged_in'] = False
     return redirect(url_for("main.main_page"))
 
+# 탈퇴
+@bp.route('/withdraw/')
+def withdraw():
+    wp.send_query("DELETE from user where id='{}'".format(g.user['user_id']),commit=True)
+    return redirect(url_for("login.login_page"))
+# 실행 전
 @bp.before_app_request  
 def load_logged_in_user():
     log = session.get('logged_in')
@@ -80,4 +86,3 @@ def load_logged_in_user():
     else:
         g.user = None
 
-        

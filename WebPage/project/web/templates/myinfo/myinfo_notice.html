@@ -1,0 +1,23 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo_notice.css') }}">
+
+<body>
+    <header>
+        <div class = "headers"></div>
+        <div class="head">공지사항</div>
+        <div class="border"></div>
+    </header>
+
+    <main class ='main'>
+        {%for i in notice['item']%}
+        <div class="content">
+            <div class="li">
+                <div class="datetime"> {{i['date']}}</div>
+                <a href="{{ url_for('myinfo.content', content_id = i['id'] ) }}" class="textcon" >{{i['title']}}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </main>    
+</body>
+{% endblock %}

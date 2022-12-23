@@ -7,10 +7,11 @@ def create_app():
     app.secret_key = 'secretkeys'
     wp = WebProject.instance()
 
-    from .views import login_views, main_views, quest_views
+    from .views import login_views, main_views, quest_views, myinfo_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(login_views.bp)
     app.register_blueprint(quest_views.bp)
+    app.register_blueprint(myinfo_views.bp)
 
     @app.route('/runSQL', methods=['POST'])
     def run_sql():
