@@ -28,7 +28,7 @@ def password():
             return redirect(url_for("myinfo.password"))
 
     else:
-        return render_template('myinfo/myinfo_passcheck.html', form=form)
+        return render_template('myinfo/myinfo_passcheck.html', form=form, name = g.user['user_id'])
     
 @bp.route('/notice', methods=['GET'])
 def notice():

@@ -4,10 +4,78 @@
 
 
 <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./leaderboard/leaderboard.css') }}">
+
+<!--<script type='text/javascript'>
+    var img_L = 0;
+    var img_T = 0;
+    var targetObj;
+    
+    function getLeft(o){
+         return parseInt(o.style.left.replace('px', ''));
+    }
+    function getTop(o){
+         return parseInt(o.style.top.replace('px', ''));
+    }
+    
+    // 이미지 움직이기
+    function moveDrag(e){
+         var e_obj = window.event? window.event : e;
+         var dmvx = parseInt(e_obj.clientX + img_L);
+         var dmvy = parseInt(e_obj.clientY + img_T);
+         targetObj.style.left = dmvx +"px";
+         targetObj.style.top = dmvy +"px";
+         return false;
+    }
+    
+    // 드래그 시작
+    function startDrag(e, obj){
+         targetObj = obj;
+         var e_obj = window.event? window.event : e;
+         img_L = getLeft(obj) - e_obj.clientX;
+         img_T = getTop(obj) - e_obj.clientY;
+    
+         document.onmousemove = moveDrag;
+         document.onmouseup = stopDrag;
+         if(e_obj.preventDefault)e_obj.preventDefault();
+    }
+    
+    // 드래그 멈추기
+    function stopDrag(){
+         document.onmousemove = null;
+         document.onmouseup = null;
+    }
+
+
+    function sleep(ms) {
+        const wakeUpTime = Date.now() + ms;
+        while (Date.now() < wakeUpTime) {}
+      }
+
+      function test() {
+        console.log("before");
+        sleep(200);
+        console.log("after");
+      }
+
+    </script>-->
+
 <body>
+    <!--동그라미 움직이기
+        <div class ="center" id = 'dung'>
+        <a href="?page={{ user_rank['mypage']}}" class = "texted">내 순위</a>
+    </div>-->
+
+    <!--마우스로 움직이기
+        <div style='position:absolute; left:0px; top:0px; cursor:pointer; cursor:hand' onmousedown='startDrag(event, this)'>
+        <div class ="center">
+        <a href="?page={{ user_rank['mypage']}}" class = "texted">내 순위</a>
+        </div>
+    </div>-->
     <header class = "displays">
             <div class = "headers"> 
-                    <a href="?page={{ user_rank['mypage']}}"> 내꺼 보깅 </a>
+                <div class ="center" id = 'dung'>
+                    <a href="?page={{ user_rank['mypage']}}" class = "texted">내 순위</a>
+                </div>
             </div>
             <div class="headers2">
                 <div class ="headers3">
@@ -34,7 +102,9 @@
         <!-- lanking 표시 ,-->
         <div class="board2 displays">
             {%for item in user_rank['item']%}
-                <div class="leaders">
+            
+                <div class="leaders test_obj">
+                    
                     {% if user_rank['page'] == 1 %}
 
                         {% if loop.index <4 %}

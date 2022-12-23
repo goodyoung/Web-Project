@@ -13,10 +13,10 @@
             <div class="content">
 
                 <div class="li">
-                    <div class="datetime"> {{contented['content']['title']}}</div>
                     <div class="datetime"> {{contented['content']['date']}}</div>
                     <div class="textcon">{{contented['content']['title']}}</div>
-                    <div class="textcon">{{contented['content']['content']}}</div>
+                    <div class="innercon">{{contented['content']['content']}}</div>
+
                 </div>
             </div>
         </main>
@@ -29,12 +29,12 @@
 
                 <div class="prev">
                     <span>이전글</span>
-                    <span>(없음)</span>
+                    <span class="next_text">(없음)</span>
                 </div>
             {% elif contented.max_page == contented.page %}
                 <div class="next">
                     <span>다음글</span>
-                    <span>(없음)</span>
+                    <span class="prev_text">(없음)</span>
                 </div>
 
                 <div class="prev">
