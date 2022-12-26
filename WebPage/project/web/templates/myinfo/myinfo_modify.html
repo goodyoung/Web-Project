@@ -1,0 +1,63 @@
+{% extends 'main_template.html' %}
+{% block content %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+    <title>SeSac</title>
+    <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='myinfo/myinfo.css') }}">
+    <script defer src="{{ url_for('static', filename='myinfo/myinfo_modify.js') }}"></script>
+
+<body>
+    <div class="myinfomodify">
+        <div class="myinfomodify_top">
+            <div class="myinfomodify_name">내 정보 수정</div>            
+        </div>
+        <div class="myinfomodify_content">
+            <div class="myinfomodify_content_fullset">
+                <div class="myinfomodify_content_title">
+                    이름
+                </div>
+                <div class="myinfomodify_content_set">                    
+                    <div class="myinfomodify_content_sub">{{user_info['user_name']}}</div>
+                    <input type="submit" class="myinfomodify_submit" id="myinfomodify_name" value="변경하기"/>
+                    <!-- 클릭하면 바뀌게 -->
+                    <!-- <div class="myinfomodify_content_sub"><input type="text"/></div>
+                    <input type="submit" href="#" class="myinfomodify_submit" value="확인"/> -->
+                </div>                
+            </div>
+            
+            <div class="myinfomodify_content_fullset">
+                <div class="myinfomodify_content_title" >
+                    별명
+                </div>
+                <div class="myinfomodify_content_set">
+                    <div class="myinfomodify_content_sub">{{user_info['user_id']}}</div>
+                    <input type="submit" class="myinfomodify_submit" id="myinfomodify_nickname" value="변경하기"/>                    
+                </div>
+            </div>
+
+            <div class="myinfomodify_content_fullset">                
+                <div class="myinfomodify_content_title">
+                    비밀번호
+                </div>
+                <div class="myinfomodify_content_set">
+                    <div class="myinfomodify_content_sub">********</div>
+                    <input type="submit" class="myinfomodify_submit" id="myinfomodify_password" value="변경하기"/>
+                    <!-- 클릭하면 바뀌게 -->
+                    <!-- <div class="myinfomodify_content_sub"><input type="password"/></div>
+                    <input type="submit" href="#" class="myinfomodify_submit" value="확인"/> -->
+                </div>                
+            </div>                        
+                     
+            <div class="myinfomodify_content_fullset">                
+                <a href="{{url_for('login.withdraw')}}" class="myinfomodify_content_title" style="color: darkgray; font-weight: lighter;">
+                    회원탈퇴 하기
+                </a>                
+                <div class="myinfomodify_content_title" style="color: darkgray; font-weight: lighter; font-size: 12px;">클릭하시면 바로 탈퇴되니 신중히 눌러주시기 바랍니다.</div>
+            </div>        
+        </div>
+    </div>
+</body>
+{% endblock %}

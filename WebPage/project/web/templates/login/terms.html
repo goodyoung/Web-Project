@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+    <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./login/terms.css') }}">
+    <title>SeSac</title>
+</head>
+<body>
+    <div class="terms">
+        <div class="terms_top">
+            <div class="terms_name">{{terms['ret1']['title']}}</div>            
+        </div>
+        <div class="terms_content">            
+            <div class="terms_content_date">
+                작성일 : {{terms['ret1']['date']}}
+            </div>
+            <div class="terms_content_sub">                        
+                {{terms['ret1']['content']}}
+            </div>                
+        </div>
+        <div class="terms_top">
+            <div class="terms_name">{{terms['ret2']['title']}}</div>            
+        </div>
+        <div class="terms_content">
+            <div class="terms_content_date">
+                작성일 : {{terms['ret2']['date']}}
+            </div>
+            <div class="terms_content_sub">                        
+                {{terms['ret2']['content']}}
+            </div>                
+            </div>       
+        </div>
+    </div>
+    
+</body>
+</html>
