@@ -1,8 +1,12 @@
 {% extends 'main_template.html' %}
 {% block content %}
 <script> document.querySelector(".ranking_link").classList.add("selected") </script>
-
-
+{% for message in get_flashed_messages() %}
+<div class="alert alert-danger" role="alert">
+    <script>alert("{{message}}")</script>
+</div>
+{% endfor %}
+<script defer src="{{ url_for('static', filename='leaderboard/question.js') }}"></script>
 <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./leaderboard/leaderboard.css') }}">
 
 <!--<script type='text/javascript'>
@@ -63,7 +67,7 @@
     <!--동그라미 움직이기
         <div class ="center" id = 'dung'>
         <a href="?page={{ user_rank['mypage']}}" class = "texted">내 순위</a>
-    </div>-->
+    </div>--> 
 
     <!--마우스로 움직이기
         <div style='position:absolute; left:0px; top:0px; cursor:pointer; cursor:hand' onmousedown='startDrag(event, this)'>
@@ -71,6 +75,9 @@
         <a href="?page={{ user_rank['mypage']}}" class = "texted">내 순위</a>
         </div>
     </div>-->
+
+
+
     <header class = "displays">
             <div class = "headers"> 
                 <div class ="center" id = 'dung'>
@@ -83,7 +90,7 @@
                     <div class = "displays headsize">
                         <span class="username">GOGOGO!</span>
                         <div class = "size1">
-                            <input class="questionbox imgquetion" placeholder="내 별명이요">                            
+                            <input class="questionbox imgquetion" id = 'question' placeholder="내 별명이요">                            
                         </div>
                     </div>
                 </div>
@@ -147,6 +154,8 @@
         </div>
 
     </section>
+
+
 
     <script> 
         {% if user_rank['myinfo'] < 4 %}
