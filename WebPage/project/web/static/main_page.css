@@ -189,3 +189,46 @@ footer{
     border-radius:0 0 10px 0;
 }
 
+.todo-list{
+    width: 100%;
+
+    padding-left:0;
+    margin-bottom: 0;
+    margin-top: 0;
+    
+    list-style: none;
+}
+
+.todo-list > li{
+    display: flex;
+    vertical-align: middle;
+
+    height: 50px;
+    width: 100%;
+
+    border: 0.5px solid gray;
+    margin: 0;
+    padding: 0;
+}
+
+.complete_button, .modify_button{
+    background: white;
+
+    border-style: none;
+}
+
+.modify_button:hover{
+    background-color: greenyellow;
+}
+
+.todo_show{
+    flex-grow: 1;
+}
+
+.todo_input{
+    flex-grow: 1;
+}
+
+.deactivate{
+    display: none;
+}

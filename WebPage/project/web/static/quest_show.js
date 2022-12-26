@@ -1,18 +1,3 @@
-async function send_SQL(query){
-
-    let result = await fetch("/runSQL", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "query": query
-        }),
-        }).then((response) => response.json());
-    
-    return result
-}
-
 async function check_answer(){
     let problem_type = document.querySelector(".problem_type")
     let problem_id = document.querySelector(".problem_id").innerText

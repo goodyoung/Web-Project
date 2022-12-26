@@ -1,13 +1,21 @@
 from flask import Blueprint, render_template, redirect, url_for, session, g, request
 from ..db import WebProject, exp_manager
 from datetime import date
+import json
 
 bp = Blueprint('main', __name__, url_prefix='/')
 wp = WebProject.instance()
 em = exp_manager.instance()
 
-@bp.route('/')
+@bp.route('/', methods = ['GET', 'POST'])
 def main_page():
+    if(request.method=="POST"):
+        params = request.get_json()
+        
+        
+        return 
+    
+
     log = session.get('logged_in')
     if log:
         # 로그인 중이면
@@ -27,7 +35,8 @@ def main_page():
     else:
         # 로그인 정보가 없으면
         return redirect(url_for("login.login_page"))
-    
+
+        
 @bp.route('/ranking')
 def ranking_page():
     rank_dict = {}
