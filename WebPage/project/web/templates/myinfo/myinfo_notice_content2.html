@@ -16,31 +16,34 @@
             <div class="notice_sub">
             <div class="innercon">{{contented['content']['content']}}</div>
         </div>
+       
 
         <footer class="pagecon">
-            {% if contented.page_list[0]==contented.page %}
+            {% if contented.page == 1 %}
                 <div class="next">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[1] ) }}" class = "text">다음글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page+1 ) }}" class = "text">다음글</a>                    
                 </div>
 
                 <div class="prev">
-                    <span>이전글 (없음)</span>
+                    <span>이전글</span>
+                    <span>(없음)</span>
                 </div>
-            {% elif contented.page_list[-1]==contented.page %}
+            {% elif contented.max_page == contented.page %}
                 <div class="next">
-                    <span>다음글 (없음)</span>
+                    <span>다음글</span>
+                    <span>(없음)</span>
                 </div>
 
                 <div class="prev">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[-2] ) }}" class = "text">이전글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page-1 ) }}" class = "text">이전글</a>
                 </div>
             {% else %}
                 <div class="next">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[contented.page_list.index(contented.page)+1] ) }}" class = "text">다음글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page+1 ) }}" class = "text">다음글</a>
                 </div>
 
                 <div class="prev">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[contented.page_list.index(contented.page)-1] ) }}" class = "text">이전글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page-1 ) }}" class = "text">이전글</a>
                 </div>
             {% endif %}
         </footer>
