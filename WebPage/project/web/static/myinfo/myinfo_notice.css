@@ -64,3 +64,8 @@ main{
     max-height: 488.5px;
     overflow-x: auto;
 }
+
+.modify{
+    display: flex;
+    justify-content: right;
+}

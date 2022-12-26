@@ -1,0 +1,25 @@
+{% extends 'main_template.html' %}
+{% block content %}
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo_notice.css') }}">
+<body>
+    <form method="post" class="my-3">
+        <main>
+            <div class="content">
+
+                <div class="li">
+                    <input type = 'text' class="datetime" value = "{{content['title']}}" name = 'title'/> 
+
+                    <div class="datetime"> {{content['datetime']}}</div>
+
+                    <input type = 'text' class="textcon"value = "{{content['content']}}" name = 'content'/>
+                </div>
+            </div>
+        </main>
+        <button type="submit" class="btn btn-primary">저장하기</button>
+    </form>
+</body>
+
+
+
+
+{% endblock %}
