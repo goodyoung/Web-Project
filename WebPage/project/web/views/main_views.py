@@ -11,9 +11,30 @@ em = exp_manager.instance()
 def main_page():
     if(request.method=="POST"):
         params = request.get_json()
+        if(params["func"]=="store"):
+            today = date.today().isoformat()
+            act = "todo_complete" if params["is_complete"] else "todo_write"
+
+            send = {"can_exp" : False, "exp" : 0}
+
+            is_exists = wp.send_query("SELECT EXISTS (SELECT * FROM todo WHERE user_id = '{}' AND nth = {} AND date = '{}') AS success".format(g.user["user_id"], params["nth"], today))
+            print(act)
+            if(is_exists[0]["success"]):
+                wp.send_query("UPDATE todo SET content='{}', is_complete={} WHERE user_id = '{}' AND nth = {} and date = '{}'".format(params["content"], params["is_complete"], g.user["user_id"], params["nth"], today), commit=True)
+                if(act=="todo_complete"):
+                    print("성공 exp 얻기")
+                    send["can_exp"] = em.gain_exp(g.user["user_id"], act)
+            else:
+                wp.send_query("INSERT INTO todo(user_id, is_complete, content, nth, date) VALUES ('{}', {}, '{}', {}, '{}')".format(g.user["user_id"], params["is_complete"], params["content"], params["nth"], today), commit=True)
+                if(act=="todo_write"):
+                    print("작성 exp 얻기")
+                    send["can_exp"] = em.gain_exp(g.user["user_id"], act)
+
+            return json.dumps(send)
         
-        
-        return 
+        elif(params["func"]=="get"):
+            send = wp.send_query("SELECT * FROM todo WHERE user_id = '{}' AND date = '{}'".format(g.user["user_id"], params["date"]))
+            return json.dumps(send)
     
 
     log = session.get('logged_in')

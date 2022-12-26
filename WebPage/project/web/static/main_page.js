@@ -1,22 +1,73 @@
 var todo_list;
 
-async function store_todo(is_complete, content, order){
+async function store_todo(is_complete, content, nth){
     let result = await fetch(".", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
+            "method": "store",
             "is_complete": is_complete,
             "content": content,
-            "order": order
+            "nth": nth
         }),
         }).then((response) => response.json());
     
     return result
 }
 
-function make_todo(){
+async function get_todo(date){
+    let result = await fetch(".", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "method": "get",
+            "date" : date
+        }),
+        }).then((response) => response.json());
+    
+    return result
+}
+
+function make_todos(date = new Date()){
+
+    let ul = document.createElement("ul")
+    ul.classList.add("todo-list")
+
+    for(let i = 0; i < 5; i++){
+        let li = document.createElement("li")
+        li.dataset.nth = i;
+
+        let p = document.createElement("p")
+        p.classList.add("todo_show")
+
+        let button1 = document.createElement("button")
+        button1.classList.add("modify_button")
+        button1.appendChild(document.createTextNode("입력"))
+        button1.addEventListener('click', ({target}) => {
+            label_to_input(target)
+        }, {once: true})
+
+        let button2 = document.createElement("button")
+        button2.classList.add("complete_button", "deactivate")
+    
+        let img = document.createElement("img")
+        img.setAttribute("src", "../static/ui/check.png")
+        
+        button2.appendChild(img)
+
+        li.appendChild(button2)
+        li.appendChild(p)
+        li.appendChild(button1)
+
+
+        ul.appendChild(li)
+    }
+
+
     let li = document.createElement("li")
 
     let p = document.createElement("p")
@@ -27,7 +78,7 @@ function make_todo(){
     button1.appendChild(document.createTextNode("입력"))
     button1.addEventListener('click', ({target}) => {
         label_to_input(target)
-    })
+    }, {once: true})
 
     let button2 = document.createElement("button")
     button2.classList.add("complete_button", "deactivate")
@@ -56,7 +107,7 @@ function label_to_input(target){
 
     target.addEventListener('click', ({target})=>{
         input_to_label(target)
-    })
+    }, {once:true})
 
     target.innerText = "저장"
 
@@ -78,7 +129,7 @@ function input_to_label(target){
         let label = document.createElement("p")
         label.classList.add("todo_show")
         label.innerText = text_input.value
-        target.addEventListener('click', ({target}) => {label_to_input(target)})
+        target.addEventListener('click', ({target}) => {label_to_input(target)}, {once: true})
     
         target.innerText = "수정"
         store_todo(0, text_input.value, target.parentNode.dataset.nth)
@@ -97,7 +148,7 @@ function input_to_label(target){
         let label = document.createElement("p")
         label.classList.add("todo_show")
         label.innerText = text_input.value
-        target.addEventListener('click', ({target}) => {label_to_input(target)})
+        target.addEventListener('click', ({target}) => {label_to_input(target)}, {once: true})
     
         target.innerText = "입력"
 
