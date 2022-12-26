@@ -21,8 +21,8 @@ def password():
         user_pwd = wp.send_query("SELECT pwd FROM user WHERE id = '{}'".format(g.user['user_id']))
         
         if check_password_hash(user_pwd[0]['pwd'],userpw):
-            
-            return redirect(url_for("myinfo.main_page")) # 다른 페이지
+            print('여기까지 왔다요')
+            return redirect(url_for("myinfo.infomodify"))
         
         else:
             flash('비밀번호 틀림')
@@ -31,10 +31,24 @@ def password():
     else:
         return render_template('myinfo/myinfo_passcheck.html', form=form, data = data)
     
+@bp.route('/infomodify', methods=['GET', 'POST'])
+def infomodify():
+    user_info = {}
+    user = wp.send_query("select * from user where id='{}'".format(g.user['user_id']))
+
+    user_info['user_name'] = user[0]['name']
+    user_info['user_id'] = user[0]['id']
+    user_info['user_pwd']= user[0]['pwd']
+    return render_template('myinfo/myinfo_modify.html', user_info = user_info)
+
+
+
+
+
 @bp.route('/notice', methods=['GET'])
 def notice():
     notice_dict = {}
-    notice = wp.send_query("SELECT * FROM notice_board ORDER BY id DESC")
+    notice = wp.send_query("SELECT * FROM notice_board ORDER BY date DESC")
     notice_dict['item'] = notice
     # user_id 가 아닌 admin을 확인 할 수 있는 무언가로 변경해야 한다다다다
     notice_dict['admin'] = g.user['user_id']
@@ -45,6 +59,8 @@ def notice():
 def content(content_id):
     content_dict = {}
     notice = wp.send_query("SELECT * from notice_board")
+    print('sdagsadg')
+    print(notice)
     max_page = len(notice)
     page = content_id
     content_dict['max_page'] = max_page
@@ -86,8 +102,6 @@ def modify(content_id):
         after = [title, contents]
         
         if before != after:
-            # 수정 시각 변경도 해야 한다. updatedAt TIMESTAMP DEFAULT NOT NULL CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 이걸로 변경 하
-            # 뭔가 alert??
             wp.send_query("update notice_board set title='{}', content='{}' where id={};".format(title,contents,content_id), commit=True)
             
         return redirect(url_for("myinfo.notice"))
