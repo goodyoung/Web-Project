@@ -19,7 +19,7 @@
             </div>
             <div class="character_show">
                 <div class="character_img">
-                    <img class="char" src="{{ url_for('static', filename='ui/mk5.gif') }}"></img>
+                    <img class="char" src="{{ url_for('static', filename='ui/mk'+main_data.lv|string+'.gif') }}"></img>
                 </div>
                 <div class="mission">
                     <p>오늘의 미션</p>

@@ -2,6 +2,7 @@ for (let close_button of document.querySelectorAll('.level-modal_close')){
     close_button.addEventListener('click', () => {
         console.log(close_button.parentNode.parentNode)
         close_button.parentNode.parentNode.classList.toggle("show");
+        window.location.reload()
     });
 }
 
