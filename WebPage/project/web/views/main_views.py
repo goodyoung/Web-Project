@@ -85,17 +85,24 @@ def ranking_page():
     first_number = (page-1) *number
     last_number =  (page*number)
     ranking = wp.send_query("SELECT id, user_Lv, user_Exp FROM user ORDER BY user_Lv DESC,user_Exp DESC")
-    user_page = ''
     if request.method == 'POST':
         params = request.get_json()
+
         for ret1,ret2 in enumerate(ranking):
-            if params['value'] ==ret2['id']:
+            te = True
+            print(te)
+            print('tete')
+            if params['value'] == ret2['id']:
+                te = False
+                print('tetetetet')
                 user_page = int((ret1 //10) +1)
                 data = {'user_page': user_page}
                 return jsonify(data)
-            else:
-                print('asd')
-                return redirect(url_for("main.ranking_page"))
+            
+        if te:
+            print('asf')
+            flash('다시하세요')
+            redirect(url_for('main.ranking_page'))
             
     max_page = (len(ranking) - 1) // number + 1
     
@@ -108,6 +115,4 @@ def ranking_page():
         if g.user['user_id'] == i['id']:
             rank_dict['myinfo'] = j+1
             rank_dict['mypage'] = int((j //10) +1)
-    print('asdasagsdadgsgasdags')
-    print(page)
     return render_template('main/ranking_page.html',user_rank = rank_dict)
