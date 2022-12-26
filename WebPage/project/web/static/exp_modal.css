@@ -1,24 +1,55 @@
-.exp-modal{
+.level-modal, .exp-modal{
     z-index: -1;
     opacity: 0;
-    background-color: blue;
 
     position: absolute;
+    transform: translate(50%, 50%);
+}
+
+.level-modal{
     right: 50%;
     bottom:0;
-    transform: translate(50%, 50%);
 
     transition: bottom 0.4s, opacity 0.4s;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
 }
 
+.exp-modal{
+    opacity: 0;
+    z-index: -1;
+    right: 50%;
+    bottom: 50%;
+}
+
+@keyframes fading{
+    0%{
+        display: block;
+        opacity: 1;
+        z-index: 1;
+    }
+
+    50%{
+        opacity: 0.6;
+    }
+
+    100%{
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
 .exp-modal.show{
+    animation: fading 2s ease-in-out backwards;
+}
+
+
+.level-modal.show{
     z-index: 1;
     bottom: 50%;
     opacity: 1;
 }
 
-.exp-top-content{
+.level-top-content{
     width: 100%;
     padding: 10px 15px;
 
@@ -27,9 +58,11 @@
     color: #f2f2f2;
     font-weight: 500;
     user-select: none;
+
+    background-color: green;
 }
 
-.exp-bottom-content{
+.level-bottom-content{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,18 +74,18 @@
     background: white;
 }
 
-.obtained_exp{
+.obtained_level{
     color:green;
     font-weight: 800;
     font-size: 14pt;
 }
 
-.exp-chr_box{
+.level-chr_box{
     position: relative;
 
 }
 
-.exp-modal_img{
+.level-modal_img{
     width:200px;
     height:200px;
 
@@ -73,13 +106,13 @@
     transition: bottom 0.8s, opacity 0.8s;
 }
 
-.exp-modal.show .levelup_img{
+.level-modal.show .levelup_img{
     z-index: 1;
     bottom: 0%;
     opacity: 1;
 }
 
-.exp-modal_close{
+.level-modal_close{
     display:block;
 
     padding: 9px 13px;

@@ -24,17 +24,35 @@ def main_page():
                 if(act=="todo_complete"):
                     print("성공 exp 얻기")
                     send["can_exp"] = em.gain_exp(g.user["user_id"], act)
+                    if(send["can_exp"]):
+                        send["exp"] = em.exp_dict[act]
             else:
                 wp.send_query("INSERT INTO todo(user_id, is_complete, content, nth, date) VALUES ('{}', {}, '{}', {}, '{}')".format(g.user["user_id"], params["is_complete"], params["content"], params["nth"], today), commit=True)
                 if(act=="todo_write"):
                     print("작성 exp 얻기")
                     send["can_exp"] = em.gain_exp(g.user["user_id"], act)
+                    if(send["can_exp"]):
+                        send["exp"] = em.exp_dict[act]
 
-            return json.dumps(send)
+        
         
         elif(params["func"]=="get"):
-            send = wp.send_query("SELECT * FROM todo WHERE user_id = '{}' AND date = '{}'".format(g.user["user_id"], params["date"]))
-            return json.dumps(send)
+            send = wp.send_query("""WITH test AS
+                (
+                    SELECT 0 AS nth
+                    UNION ALL
+                    SELECT 1 AS nth
+                    UNION ALL
+                    SELECT 2 AS nth
+                    UNION ALL
+                    SELECT 3 AS nth
+                    UNION ALL
+                    SELECT 4 AS nth
+                )
+                SELECT test.nth, IFNULL(todo.is_complete, -1) AS is_complete , IFNULL(todo.content, "") AS content FROM test LEFT JOIN todo ON test.nth = todo.nth AND todo.user_id = '새싹이2' AND todo.date = '2022-12-26' ORDER BY nth;
+                """.format(g.user["user_id"], params["date"]))
+        
+        return json.dumps(send)
     
 
     log = session.get('logged_in')
