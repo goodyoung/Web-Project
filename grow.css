@@ -1,0 +1,175 @@
+*{
+    box-sizing: border-box;
+}
+
+section{
+    width : 55%;
+    max-width: 800px;
+    min-width: 400px;
+
+    margin : 0 auto;
+    padding: 10px;
+
+    text-align: mid;
+    
+    background-color: rgb(255, 255, 255);
+    border-radius: 5%;
+}
+
+.title{
+    display:flex;
+    justify-content: center;
+    vertical-align: center;
+
+}
+
+.title > h1 {
+    margin:40px 0;
+
+    font-size: 50pt;
+    font-weight: 100;
+}
+
+.container-box{
+    border: 1px solid black !important;
+    background-color: white;
+}
+
+.container-box > *{
+    width:100%;
+}
+
+.container-box *{
+    color : gray;
+}
+
+.list{
+    height:50px;
+    font-size: 16pt;
+
+    margin : 0;
+    padding-left: 50px;
+}
+
+.list-tr{
+    height:50px;
+    font-size: 16pt;
+
+    margin : 0;
+    padding-left: 50px;
+}
+
+.todo-input{
+    height:50px;
+    font-size: 16pt;
+
+    margin : 0;
+    padding-left: 50px;
+}
+
+.todo-list{
+    padding-left:0;
+    margin-bottom: 0;
+    margin-top: 0;
+    
+    list-style: none;
+}
+
+.todo-list > li{
+    display: flex;
+    vertical-align: middle;
+
+    height: 50px;
+    width: 100%;
+
+    border: 0.5px solid gray;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-list > li.hided-item{
+    display:none;
+}
+.todo-list > li.showed-item{
+    display:flex;
+}
+
+.todo-list > li > .check-complete{
+    width:24px;
+    margin:13px 18px 13px 8px;
+    padding:0;
+}
+
+.todo-list > li > label{   
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    font-size: 16pt;
+}
+
+.todo-list > li > input[type="text"]{
+    display: flex;
+    flex-grow:1;
+    font-size:16pt;
+}
+
+.todo-list > li > .del-todo{
+    display:none;
+
+    width: 26px;
+    margin: 12px;
+    padding:0;
+
+    background: url(https://cdn-icons-png.flaticon.com/512/2997/2997911.png) 50% 50%;
+    background-size: contain;
+
+    border:none;
+}
+
+.todo-list > li:hover > .del-todo{
+    display: block;
+}
+
+.todo-list > li > .check-complete:checked + label{
+    color:gray;
+    text-decoration:line-through;
+}
+
+.todo-underbar{
+    height: 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 10pt;
+}
+
+.todo-underbar input[type="button"]{
+    background: none;
+    border : none;
+    font-size:10pt;
+}
+
+.todo-underbar input[type="button"]:hover{
+    background: rgb(220,220,220);
+}
+
+.todo-underbar > p{
+    padding-left : 10px;
+}
+
+.todo-underbar > ul{
+    display: flex;
+    justify-content: center;
+
+    list-style-type: none;
+}
+
+.todo-filter-selected{
+    border: solid 1px brown !important;
+}
+.todo-filter{
+    border: solid 1px white !important;
+}
