@@ -1,29 +1,55 @@
-{% extends 'main_template.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='myinfo/myinfo_enroll.css') }}">
+
+</head>
 <body>
-    <form method="post" class="my-3">
-        <label for="title">제목</label>
-        <input type="text"  name="title" id="title">
-
-        <label for="content">내용</label>
-        <textarea name="content" id="content" rows="10"></textarea>
-
-        <button type="submit" class="btn btn-primary">저장하기</button>
-
-
-        <!-- 필드 / flash 오류 -->
-        {{ form.csrf_token }}
-        <!--{% include "form_errors.html" %}-->
-        {% if form.errors %}
-        <div class="alert alert-danger" role="alert">
-            {% for field, errors in form.errors.items() %}
-                <strong id = 'te'>{{ form[field].label }}</strong>  
-            {% endfor %}
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong style = "margin-left:6px;">공지사항 등록</strong>
         </div>
-        {%endif %}
 
+        <form method="post" class="my-3">
+            <div class="board_write_wrap">
+                <div class="board_write">
+                    <div class="title">
+                        <dl>        
+                            <dd>
+                                <label for="title"></label>
+                                <input type="text" placeholder="제목 입력" name="title" id="title"/>
+                            </dd>
+                        </dl>
+                    </div>
 
+                    <div class="cont">
+                        <label for="content"></label>
+                        <textarea name="content" id="content" placeholder="내용 입력"></textarea>
+                    </div>
 
-    </form>
+                </div>
+                
+                <div class="bt_wrap">
+                    <button type="submit"class="tododo">등록</button>
+                    <a href="{{ url_for('myinfo.notice') }}">취소</a>
+                </div>
+            </div>
+
+            <!-- 필드 / flash 오류 -->
+            {{ form.csrf_token }}
+            <!--{% include "form_errors.html" %}-->
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field, errors in form.errors.items() %}
+                    <strong id = 'te' style = "font-size: 2rem;">{{ form[field].label }} 입력해주세요.</strong> <br>
+                {% endfor %}
+            </div>
+            {%endif %}
+        </form>
+
+    </div>
 </body>
-{% endblock %}
+</html>

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, g, request, flash
 from ..db import WebProject
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash,generate_password_hash
 from ..form import Trypwd, Enroll
 
 bp = Blueprint('myinfo', __name__, url_prefix='/myinfo')
@@ -33,9 +33,19 @@ def password():
     
 @bp.route('/infomodify', methods=['GET', 'POST'])
 def infomodify():
+    if(request.method == 'POST'):
+        params = request.get_json()
+        if len(params['value']) == 0:
+            flash('다시 입력해 주세요')
+            return redirect(url_for("myinfo.infomodify"))
+        else:
+            if params['column'] == 'name':
+                wp.send_query("UPDATE user SET {} = '{}' WHERE id='{}'".format(params['column'], params['value'], g.user['user_id']), commit=True)
+            else:
+                wp.send_query("UPDATE user SET {} = '{}' WHERE id='{}'".format(params['column'], generate_password_hash(params['value']), g.user['user_id']), commit=True)
+            return redirect(url_for("myinfo.infomodify"))
     user_info = {}
     user = wp.send_query("select * from user where id='{}'".format(g.user['user_id']))
-
     user_info['user_name'] = user[0]['name']
     user_info['user_id'] = user[0]['id']
     user_info['user_pwd']= user[0]['pwd']

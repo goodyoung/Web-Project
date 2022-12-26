@@ -21,22 +21,14 @@
                 </div>
                 <div class="myinfomodify_content_set">                    
                     <div class="myinfomodify_content_sub">{{user_info['user_name']}}</div>
-                    <input type="submit" class="myinfomodify_submit" id="myinfomodify_name" value="변경하기"/>
+                    <input type="button" class="myinfomodify_submit" id="myinfomodify_name" value="변경하기"/>
                     <!-- 클릭하면 바뀌게 -->
                     <!-- <div class="myinfomodify_content_sub"><input type="text"/></div>
                     <input type="submit" href="#" class="myinfomodify_submit" value="확인"/> -->
                 </div>                
             </div>
             
-            <div class="myinfomodify_content_fullset">
-                <div class="myinfomodify_content_title" >
-                    별명
-                </div>
-                <div class="myinfomodify_content_set">
-                    <div class="myinfomodify_content_sub">{{user_info['user_id']}}</div>
-                    <input type="submit" class="myinfomodify_submit" id="myinfomodify_nickname" value="변경하기"/>                    
-                </div>
-            </div>
+            
 
             <div class="myinfomodify_content_fullset">                
                 <div class="myinfomodify_content_title">
@@ -44,7 +36,7 @@
                 </div>
                 <div class="myinfomodify_content_set">
                     <div class="myinfomodify_content_sub">********</div>
-                    <input type="submit" class="myinfomodify_submit" id="myinfomodify_password" value="변경하기"/>
+                    <input type="button" class="myinfomodify_submit" id="myinfomodify_password" value="변경하기"/>
                     <!-- 클릭하면 바뀌게 -->
                     <!-- <div class="myinfomodify_content_sub"><input type="password"/></div>
                     <input type="submit" href="#" class="myinfomodify_submit" value="확인"/> -->
@@ -59,5 +51,10 @@
             </div>        
         </div>
     </div>
+    {% for message in get_flashed_messages() %}
+<div class="alert alert-danger" role="alert">
+    <script>alert("{{message}}")</script>
+</div>
+{% endfor %}
 </body>
 {% endblock %}
