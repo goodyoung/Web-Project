@@ -68,13 +68,12 @@ def notice():
 @bp.route('/content/<int:content_id>', methods=['GET'])
 def content(content_id):
     content_dict = {}
-    notice = wp.send_query("SELECT * from notice_board")
-    print('sdagsadg')
-    print(notice)
-    max_page = len(notice)
-    page = content_id
-    content_dict['max_page'] = max_page
-    content_dict['page'] = page
+    
+    notice = wp.send_query("SELECT * from notice_board ORDER BY date DESC")
+    page_list = [i['id'] for i in notice]
+    content_dict['page_list'] = page_list
+    content_dict['page'] = content_id
+    
     content = wp.send_query("SELECT * from notice_board where id ={}".format(content_id))
     content_dict['content'] = content[0]
     return render_template('myinfo/myinfo_notice_content.html',contented=content_dict)

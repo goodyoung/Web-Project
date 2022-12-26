@@ -21,31 +21,31 @@
         </main>
 
         <footer class="pagecon">
-            {% if contented.page == 1 %}
+            {% if contented.page_list[0]==contented.page %}
                 <div class="next">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page+1 ) }}" class = "text">다음글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[1] ) }}" class = "text">다음글</a>
                 </div>
 
                 <div class="prev">
                     <span>이전글</span>
                     <span>(없음)</span>
                 </div>
-            {% elif contented.max_page == contented.page %}
+            {% elif contented.page_list[-1]==contented.page %}
                 <div class="next">
                     <span>다음글</span>
                     <span>(없음)</span>
                 </div>
 
                 <div class="prev">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page-1 ) }}" class = "text">이전글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[-2] ) }}" class = "text">이전글</a>
                 </div>
             {% else %}
                 <div class="next">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page+1 ) }}" class = "text">다음글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[contented.page_list.index(contented.page)+1] ) }}" class = "text">다음글</a>
                 </div>
 
                 <div class="prev">
-                    <a href="{{ url_for('myinfo.content', content_id = contented.page-1 ) }}" class = "text">이전글</a>
+                    <a href="{{ url_for('myinfo.content', content_id = contented.page_list[contented.page_list.index(contented.page)-1] ) }}" class = "text">이전글</a>
                 </div>
             {% endif %}
         </footer>

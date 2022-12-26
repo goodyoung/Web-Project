@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, session, g, request
+from flask import Blueprint, render_template, redirect, url_for, session, g, request,jsonify, flash
 from ..db import WebProject, exp_manager
 from datetime import date
 import json
@@ -37,7 +37,7 @@ def main_page():
         return redirect(url_for("login.login_page"))
 
         
-@bp.route('/ranking')
+@bp.route('/ranking', methods=['GET', 'POST'])
 def ranking_page():
     rank_dict = {}
     number = 10
@@ -46,7 +46,18 @@ def ranking_page():
     first_number = (page-1) *number
     last_number =  (page*number)
     ranking = wp.send_query("SELECT id, user_Lv, user_Exp FROM user ORDER BY user_Lv DESC,user_Exp DESC")
-
+    user_page = ''
+    if request.method == 'POST':
+        params = request.get_json()
+        for ret1,ret2 in enumerate(ranking):
+            if params['value'] ==ret2['id']:
+                user_page = int((ret1 //10) +1)
+                data = {'user_page': user_page}
+                return jsonify(data)
+            else:
+                print('asd')
+                return redirect(url_for("main.ranking_page"))
+            
     max_page = (len(ranking) - 1) // number + 1
     
     item = ranking[first_number:last_number]
@@ -58,5 +69,6 @@ def ranking_page():
         if g.user['user_id'] == i['id']:
             rank_dict['myinfo'] = j+1
             rank_dict['mypage'] = int((j //10) +1)
-                 
+    print('asdasagsdadgsgasdags')
+    print(page)
     return render_template('main/ranking_page.html',user_rank = rank_dict)
