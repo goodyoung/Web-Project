@@ -13,7 +13,7 @@
             <div class="character_info">
                 <div class="character_lv">Lv.<label style="font-size:30pt">{{ main_data["lv"] }}</label></div>
                 <div class="character_detail">
-                    <div class="character_name">{{ g.user["user_id"]}}님</div>
+                    <div class="character_name">{{ g.user["user_id"]}} 님</div>
                     <progress value="{{ main_data['exp'] }}" max="{{ main_data['max_exp'] }}" id="progress"></progress>
                 </div>
             </div>
@@ -28,6 +28,7 @@
             </div>
         </div>
         <div class="todo">
+            <h2>오늘의 Todo</h2>
         </div>
     </main>
     <footer>

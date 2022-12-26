@@ -160,19 +160,6 @@ async function input_to_label(target){
         prev.parentNode.insertBefore(label, prev)
         text_input.remove()
     }
-    else{
-        prev = text_input.nextSibling
-    
-        let label = document.createElement("p")
-        label.classList.add("todo_show")
-        label.innerText = text_input.value
-        target.addEventListener('click', ({target}) => {label_to_input(target)}, {once: true})
-    
-        target.innerText = "입력"
-
-        prev.parentNode.insertBefore(label, prev)
-        text_input.remove()
-    }
 }
 
 window.onload = function assign_event(){
