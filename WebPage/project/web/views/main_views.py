@@ -49,7 +49,7 @@ def main_page():
                     UNION ALL
                     SELECT 4 AS nth
                 )
-                SELECT test.nth, IFNULL(todo.is_complete, -1) AS is_complete , IFNULL(todo.content, "") AS content FROM test LEFT JOIN todo ON test.nth = todo.nth AND todo.user_id = '새싹이2' AND todo.date = '2022-12-26' ORDER BY nth;
+                SELECT test.nth, IFNULL(todo.is_complete, -1) AS is_complete , IFNULL(todo.content, "") AS content FROM test LEFT JOIN todo ON test.nth = todo.nth AND todo.user_id = '{}' AND todo.date = '{}' ORDER BY nth;
                 """.format(g.user["user_id"], params["date"]))
         
         return json.dumps(send)
