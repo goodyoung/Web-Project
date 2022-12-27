@@ -61,24 +61,31 @@ nav{
 .myinfo {
     width: 100%;
     height: 100%;
-    font-size: 14px;
-        
+    font-size: 14px;        
 }
 
 .myinfo_top {    
     height: 30%;
     background: rgba(113,188,102,1);
-    opacity: 1;        
+    opacity: 1;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 40px;
+    
 }
 
-.myinfo_name {    
-    color: rgba(241,248,240,1);        
-    padding: 60px 15px;
+.myinfo_name {     
+    width: 90%;
+
+    padding-top: 10%;
+    
+    color: rgba(241,248,240,1);            
     font-family: Roboto;    
     font-size: 35px;
     opacity: 1;  
-    
-    margin-bottom: 25px;
 }
 
 .myinfo_modifybutton {    
@@ -142,6 +149,10 @@ nav{
     font-size: 14px;
     color: black;    
     text-align: left;    
+}
+
+.myinfo_content_set > a {
+    text-decoration: none;
 }
 
 .myinfo_logout {

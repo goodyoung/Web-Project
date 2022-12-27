@@ -13,17 +13,20 @@
 
 <body>
     <div class="divbody">
-
+        
+           
         <header class = "displaycenter">
-            <img src="{{url_for('static',filename='./login/login_ui/login_sprout.gif')}}" class="char">
+            <div class="title">새싹이 키우기</div>
         </header>
-
+             <div class = "displaycenter">
+            <img src="{{url_for('static',filename='./login/login_ui/login_sprout.gif')}}" class="char">
+            </div>
         <section>
             <form action="{{ url_for('login.login_page') }}" method="post">
             <div class="divone">
 
                 <div class="display">
-                    <span class="textmargin">별명</span>
+                    <span class="textmargin fonts">별명</span>
                     <div class = "displaycenter">
                         <label for="userid"></label>
                         <div class = "divdisplay">
@@ -37,7 +40,7 @@
                 </div>
 
                 <div class="display"> 
-                    <span class="textmargin">비밀번호</span>
+                    <span class="textmargin fonts">비밀번호</span>
 
                     <div class = "displaycenter">
                         <label for="userpw"></label>
@@ -55,7 +58,7 @@
 
             <div class = "display">
                 <div class = "displaycenter">
-                <input type = "submit" class="login" style = "margin-bottom:16px" value="로그인 버튼"/>
+                <input type = "submit" class="login" style = "margin-bottom:16px" value="로그인 하기"/>
                 </div>
 
                 <!-- 필드 / flash 오류 -->
@@ -67,9 +70,9 @@
                 <div class = "displaycenter">
                     <div>
                         <div style ="width:100%">
-                            <a class="a" href="{{ url_for('login.register_page') }}">회원가입</a>
+                            <a class="a fonts" href="{{ url_for('login.register_page') }}">회원가입</a>
                             <a>/</a>
-                            <a class="a" href="{{ url_for('login.finder') }}">별명 ∙ 비밀번호 찾기</a>
+                            <a class="a fonts" href="{{ url_for('login.finder') }}">별명 ∙ 비밀번호 찾기</a>
                         </div>
                     </div>
 

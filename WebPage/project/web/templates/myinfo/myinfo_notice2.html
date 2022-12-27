@@ -1,6 +1,9 @@
 {% extends 'main_template.html' %}
 {% block content %}
 <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo_notice.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
+
 <body>
     <div class="notice">
         <div class="notice_top">            
@@ -23,7 +26,7 @@
                         관리자는 0,1 로 판단 할 까?-->                        
                         {%if notice['admin'] == '새싹이2'%}                        
                         <div class="admin_modify">
-                            <a class = "delete" href="javascript:void(0)" data-uri="{{ url_for('myinfo.delete', content_id=i['id']) }}">삭제</a>                            
+                            <a href="javascript:void(0)" data-uri="{{ url_for('myinfo.delete', content_id=i['id']) }}">삭제</a>                            
                             <a href="{{ url_for('myinfo.modify', content_id = i['id'] ) }}">수정</a>                        
                         </div>
                         {%endif%}                        
@@ -31,8 +34,7 @@
             </div>
             {% endfor %}
         </div> 
-    </div>    
-
+    </div>  
 
 
 

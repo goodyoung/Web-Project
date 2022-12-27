@@ -85,6 +85,9 @@ def logout():
 @bp.route('/withdraw/')
 def withdraw():
     wp.send_query("DELETE from user where id='{}'".format(g.user['user_id']),commit=True)
+    wp.send_query("DELETE from daily where user_id='{}'".format(g.user['user_id']),commit=True)
+    wp.send_query("DELETE from solving where user_id='{}'".format(g.user['user_id']),commit=True)
+    wp.send_query("DELETE from todo where user_id='{}'".format(g.user['user_id']),commit=True)
     return redirect(url_for("login.login_page"))
 
 
