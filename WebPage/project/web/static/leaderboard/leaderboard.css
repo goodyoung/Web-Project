@@ -6,9 +6,7 @@ header{
     width:100%;
 }
 
-input::placeholder{
-    padding-left: 30px;
-}
+
 
 section{
     width: 100%;
@@ -61,10 +59,20 @@ section{
     border-bottom-right-radius: 8px;
     
 }
-.imgquetion{
-    background-image: url('./leaderboard_ui/question.png');
+input {
     background-repeat: no-repeat;
-    overflow: hidden;
+    border: 1px solid #ccc;
+    padding: 5px 5px;
+    width: 120px;
+}
+
+input::-webkit-input-placeholder{
+  background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png) ;
+  background-size: contain;
+  background-position:  1px center;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-indent: 0;
 }
 .name {
     color: #fff;
@@ -190,13 +198,13 @@ section{
 
 .texted{
     text-decoration: none;
-    color:white;
+    color:#534A4A;
 }
 
 #dung{
 
-    background-color:#99CD89;
-
+    background-color:#EFF4B2;
+    box-shadow: 3px 3px rgb(128 128 128 / 40%);
     position:absolute;
     bottom: 80px;
     right: 0;
@@ -210,7 +218,7 @@ section{
     height: 60px;
     border-radius: 50%;
 
-animation:ani 1s infinite alternate;  
+animation:ani 2s infinite alternate;  
 }
 @keyframes ani{
     0%{transform:translate(0,0);}
