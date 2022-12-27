@@ -4,7 +4,7 @@ body *::-webkit-scrollbar{
 
 section{
     padding-top: 60px;
-    height: 100%;
+    height: calc(100% - 60px);
 }
 
 .main{
@@ -16,7 +16,7 @@ section{
 header{
     position: absolute;
     left:0px;
-    top:0px;
+    top:60px;
 
     width:100%;
 
@@ -216,7 +216,6 @@ footer > ol{
 .answer_choice:has(input[type="radio"]:checked){
     display: block;
     
-    /* border: solid 1px black; */
     font-weight: 700;
 }
 
@@ -271,6 +270,7 @@ footer > button{
 }
 
 .modal{
+    display: none;
     z-index: -1;
     opacity: 0;
 
@@ -296,6 +296,7 @@ footer > button{
 }
 
 .modal.show{
+    display: block;
     transform: translate(50%, 50%);
     z-index: 1;
     bottom: 50%;

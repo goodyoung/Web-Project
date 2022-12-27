@@ -139,7 +139,14 @@ async function input_to_label(target){
     text_input = target.parentNode.querySelector("input")
     console.log(text_input.value)
 
-    if(text_input.value != ""){
+
+    if(text_input.value.length > 30){
+        todo_error()
+        target.addEventListener('click', ({target})=>{
+            input_to_label(target)
+        }, {once:true})
+    }
+    else if(text_input.value != ""){
         prev = text_input.nextSibling
     
         let label = document.createElement("p")
@@ -163,10 +170,18 @@ async function input_to_label(target){
     }
 }
 
+function todo_error(){
+    document.querySelector(".error-modal").classList.add("show")
+}
+
 window.onload = function assign_event(){
     todo = document.getElementsByClassName("todo")[0]
 
     make_todos()
 
     check_lvup()
+
+    document.querySelector(".error-modal-modal_close").addEventListener('click', () => {
+        document.querySelector(".error-modal").classList.remove("show")
+    })
 }

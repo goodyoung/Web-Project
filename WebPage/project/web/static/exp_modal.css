@@ -23,6 +23,7 @@
 }
 
 .exp-modal.show{
+    display: block;
     animation: fading 2s ease-in-out backwards;
     transform: translate(50%, 50%);
 }

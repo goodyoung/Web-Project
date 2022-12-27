@@ -1,10 +1,10 @@
 section{
     padding-top: 60px;
-    height: 100%;
+    height: calc(100% - 60px);
 }
 
 .main{
-    max-height: calc(100% - 50px);
+    max-height: calc(100% - 60px);
 
     overflow-x: scroll;
 }
@@ -16,7 +16,7 @@ section{
 header{
     position: absolute;
     left:0px;
-    top:0px;
+    top:60px;
 
     width:100%;
 
