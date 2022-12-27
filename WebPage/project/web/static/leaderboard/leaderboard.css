@@ -247,10 +247,38 @@ animation:ani 2s infinite alternate;
     }
 }
 
-.test_obj {
-    position: relative;
-    animation: fadeInUp 1s;
+.test_obj1 {
+    animation: fadeInUp 2s 0.05s;
 }
+.test_obj2 {
+    animation: fadeInUp 2s 0.1s;
+}
+.test_obj3 {
+    animation: fadeInUp 2s 0.15s;
+}
+.test_obj4 {
+    animation: fadeInUp 2s 0.2s;
+}
+.test_obj5 {
+    animation: fadeInUp 2s 0.25s;
+}
+.test_obj6 {
+    animation: fadeInUp 2s 0.3s;
+}
+.test_obj7 {
+    animation: fadeInUp 2s 0.35s;
+}
+.test_obj8 {
+    animation: fadeInUp 2s 0.4s;
+}
+.test_obj9 {
+    animation: fadeInUp 2s 0.45s;
+}
+.test_obj10 {
+    animation: fadeInUp 2s 0.5s;
+}
+
+
 
 .coloror{
     background:rgba(197,223,155,0.3)

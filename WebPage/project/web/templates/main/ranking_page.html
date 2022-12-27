@@ -41,12 +41,11 @@
         <!-- lanking 표시 ,-->
         <div class="board2 displays">
             {%for item in user_rank['item']%}
-                {%if loop.index % 2==1 %}
-                <div class="leaders1 test_obj coloror">
+                {%if loop.index % 2 ==1%}
+                <div class="leaders1 test_obj{{loop.index}} coloror">
                 {%else%}
-                <div class="leaders2 test_obj coloror2">
+                <div class="leaders1 test_obj{{loop.index}} coloror2">
                 {%endif%}
-
 
                     {% if user_rank['page'] == 1 %}
 
