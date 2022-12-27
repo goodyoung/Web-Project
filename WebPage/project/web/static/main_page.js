@@ -168,6 +168,11 @@ async function input_to_label(target){
         prev.parentNode.insertBefore(label, prev)
         text_input.remove()
     }
+    else{
+        target.addEventListener('click', ({target})=>{
+            input_to_label(target)
+        }, {once:true})
+    }
 }
 
 function todo_error(){
