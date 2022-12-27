@@ -244,6 +244,7 @@ footer{
 
     background-image: url("../static/ui/check.png");
     background-size: contain;
+    background-color: white;
 
     border-style: none;
 }
