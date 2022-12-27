@@ -1,12 +1,20 @@
 body *::-webkit-scrollbar{
     display: none;
 }
+*{
+    font-family: 'EF_Diary';
+}
 
 section{
     padding-top: 60px;
     height: calc(100% - 60px);
 }
 
+
+@font-face {
+    font-family: 'neon';
+    src: url('EF_Diary.ttf') format('truetype');
+}
 .main{
     max-height: calc(100% - 50px);
 
@@ -25,7 +33,6 @@ header{
 }
 
 pre{
-    font-family: 'Consolas';
 
     white-space: pre-wrap;
     letter-spacing: 1pt;
@@ -134,9 +141,7 @@ pre{
 
     padding: 5px;
 
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
+    font-style: normal;font-weight: 500;
     font-size: 18px;
     line-height: 16px;
 

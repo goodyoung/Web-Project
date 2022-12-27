@@ -1,10 +1,13 @@
 
 * {
     box-sizing: border-box;
-
+    font-family: 'EF_Diary';
 }
 
-
+@font-face {
+    font-family: 'neon';
+    src: url('EF_Diary.ttf') format('truetype');
+}
 body *{
     box-sizing: border-box;
 }

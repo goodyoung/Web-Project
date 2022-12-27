@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    font-family: 'EF_Diary';
+
 }
 header{
     height:145px;
@@ -7,7 +9,10 @@ header{
 }
 
 
-
+@font-face {
+    font-family: 'neon';
+    src: url('EF_Diary.ttf') format('truetype');
+}
 section{
     width: 100%;
     height: calc(100% - 245px)

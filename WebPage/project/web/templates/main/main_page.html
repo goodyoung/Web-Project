@@ -3,9 +3,11 @@
 <script> document.querySelector(".main_link").classList.add("selected") </script>
 
 <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='main_page.css') }}">
+
 <script defer src="{{ url_for('static', filename='main_page.js') }}"></script>
+
 <main>
-    <div class="back">
+    <div class="back snow{{main_data['snow_id']}} background{{main_data['background_id']}}">
         <div class="character_info">
             <div class="character_lv">Lv.<label style="font-size:30pt">{{ main_data["lv"] }}</label></div>
             <div class="character_detail">
@@ -24,7 +26,7 @@
         </div>
     </div>
     <div class="todo">
-        <h2>오늘의 Todo</h2>
+        <h2>오늘의 할 일</h2>
     </div>
 </main>
 <div class="error-modal">

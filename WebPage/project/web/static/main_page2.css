@@ -1,10 +1,3 @@
-*{
-    font-family: 'EF_Diary';
-}
-@font-face {
-    font-family: 'neon';
-    src: url('EF_Diary.ttf') format('truetype');
-}
 header{
     display: flex;
     flex-direction: column;
@@ -272,7 +265,6 @@ footer{
 
 .complete_button.complete{
     background-image: url("../static/ui/complete.png");
-    background-repeat: no-repeat;
 }
 
 .todo_show{
@@ -359,63 +351,4 @@ footer{
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
-}
-
-
-
-
-
-
-
-
-
-.back:after {
-    position:absolute;
-    top:0;
-    left:0;
-    background-size:100% 100%;
-
-    opacity:0.5!important;
-    filter:alpha(opacity=50);
-    z-index:-1;
-
-    content:"";
-    width:100%;
-    height:100%;
-}
-
-
-.background1:after{
-    background-image:url("ui/backimg.jpeg");
-}
-
-.background2:after{
-    background-image:url("ui/backimg2.jpeg");
-}
-
-.background3:after{
-    background-image:url("ui/backimg3.jpeg");
-}
-
-
-
-
-.snowflake{
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: white;
-    position: absolute;
-    top: -8px;
-
-}
-
-@keyframes fall{
-    from{
-
-    }
-    to{
-        transform: translateY(100vh);
-        opacity: 0;
-    }
 }

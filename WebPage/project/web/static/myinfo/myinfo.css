@@ -1,7 +1,10 @@
 *{
     font-family: 'EF_Diary';
 }
-
+@font-face {
+    font-family: 'neon';
+    src: url('EF_Diary.ttf') format('truetype');
+}
 body{
     margin: 0;
     position: relative;
@@ -12,11 +15,6 @@ body{
 
     max-height: 1000px;
     height: 100vh;
-}
-
-@font-face {
-    font-family: 'neon';
-    src: url('EF_Diary.ttf') format('truetype');
 }
 
 body *{
@@ -278,6 +276,15 @@ body *{
     align-items: center;
     justify-items: center; 
 }
+.myinfomodify_content_set2{
+    width: 90%;
+    height: 50%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center; 
+}
 .myinfomodify_content_title {
     height: 50%;
     width: 85%;  
@@ -366,23 +373,47 @@ body *{
     font-size: 12px;
 }
 .totback{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
 
-.back {
-    position:absolute;
-    background-image:url("myinfo_ui/backimg2.jpeg");
-    background-size:50% 25%;
 
-    opacity:0.5!important;
-    filter:alpha(opacity=50);
-    z-index:1;
-    background-repeat: no-repeat;
-    content:"";
-    width:100%;
-    height:100%;
+.margins{
+    margin-right: 10%;
+    width: 79%;
 }
 
+
+.btns {
+
+    background: #E0E0E0;    
+    
+    margin-right: 2px;
+    padding: 5px 10px;
+
+    border: 0px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+
+    color: black;    
+    font-size: 12px;
+    overflow: hidden;  
+    
+    display: flex;
+    justify-content: center;
+}
+.myinfomodify_submit:hover{
+    background-color: #71bc66; /* Green */
+
+}
+.btns:hover{
+    background-color: #71bc66; /* Green */
+}
+.char:hover{
+    transform: scale(1.2);
+}

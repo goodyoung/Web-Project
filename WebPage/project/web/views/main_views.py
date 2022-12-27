@@ -61,7 +61,19 @@ def main_page():
         # 로그인 중이면
         em.daily_exist(g.user["user_id"])
         main_data = {}
-
+        # args id 가 있을 때
+        if request.args.get('id'):
+           back_id = request.args.get('id', type=int)
+           wp.send_query("update user set background_id={} where id='{}';".format(back_id,g.user["user_id"]), commit=True)
+        # args snow 가 있을 때
+        elif request.args.get('snow'):
+           snow_id = request.args.get('snow', type=int)
+           wp.send_query("update user set snow={} where id='{}';".format(snow_id,g.user["user_id"]), commit=True)
+            
+        back_snow = wp.send_query("SELECT background_id, snow FROM user WHERE id = '{}'".format(g.user["user_id"]))
+        back_id = back_snow[0]['background_id']
+        snow_id = back_snow[0]['snow']
+        
         result = wp.send_query("SELECT user_Lv, user_Exp FROM user WHERE id = '{}'".format(g.user["user_id"]))
         main_data["lv"] = result[0]["user_Lv"]
         main_data["exp"] = result[0]["user_Exp"]
@@ -69,7 +81,8 @@ def main_page():
         main_data["imgview"] = random.randrange(1,3)
 
         main_data["max_exp"] = em.lvup_dict[main_data["lv"]]
-
+        main_data['background_id'] = back_id
+        main_data['snow_id'] = snow_id
         today = date.today().isoformat()
         main_data["mission"] = wp.send_query("SELECT quest_solve FROM daily WHERE user_id = '{}' AND date = '{}'".format(g.user["user_id"], today))[0]["quest_solve"]
 

@@ -3,6 +3,9 @@ section{
     height: calc(100% - 60px);
 }
 
+*{
+    font-family: 'EF_Diary';
+}
 .main{
     max-height: calc(100% - 60px);
 
@@ -13,6 +16,10 @@ section{
     display: none;
 }
 
+@font-face {
+    font-family: 'neon';
+    src: url('EF_Diary.ttf') format('truetype');
+}
 header{
     position: absolute;
     left:0px;
@@ -42,7 +49,7 @@ header{
 
     margin:0;
 
-    font-family: 'Roboto';
+    
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -109,7 +116,7 @@ header{
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;
 
-    font-family: 'Roboto';
+    
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -148,7 +155,7 @@ header{
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;
 
-    font-family: 'Roboto';
+    
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

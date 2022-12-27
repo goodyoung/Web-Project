@@ -34,17 +34,27 @@
                 </div>
                 <div class = "totback">
                     <a href="{{url_for('main.main_page',id = 1)}}">
-                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg.jpeg')}}" class="char" style = "width:35%; height:50%;">
+                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg.jpeg')}}" class="char">
                     </a>
 
                     <a href="{{url_for('main.main_page',id = 2)}}">
-                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg2.jpeg')}}" class="char" style = "width:35%; height:50%;">
+                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg2.jpeg')}}" class="char">
                     </a>
-
+                    <a href="{{url_for('main.main_page',id = 3)}}">
+                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg3.jpeg')}}" class="char">
+                    </a>
                 </div>
             </div>    
-
-
+            <div class="myinfomodify_content_fullset">                
+                <div class="myinfomodify_content_title">
+                    
+                        <div class = "myinfomodify_content_set2">
+                            <div class="margins">눈 내리기 적용</div>
+                            <button class = "btns" onclick = "location.href='{{url_for('main.main_page',snow = 1)}}'">on</button>
+                            <button class = "btns" onclick = "location.href='{{url_for('main.main_page',snow = 0)}}'" style = "margin-left: 28px;">off</button>
+                        </div>
+                    </div>
+            </div>   
             <div class="myinfomodify_content_fullset">                
                 <a href="{{url_for('login.withdraw')}}" class="myinfomodify_content_title" style="color: darkgray; font-weight: lighter;">
                     회원탈퇴 하기
