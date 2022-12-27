@@ -60,8 +60,8 @@ def notice():
     notice_dict = {}
     notice = wp.send_query("SELECT * FROM notice_board ORDER BY date DESC")
     notice_dict['item'] = notice
-    # user_id 가 아닌 admin을 확인 할 수 있는 무언가로 변경해야 한다다다다
-    notice_dict['admin'] = g.user['user_id']
+    user = wp.send_query("select * from user where id = '{}'".format(g.user['user_id']))
+    notice_dict['admin'] = user[0]['admin']
     return render_template('myinfo/myinfo_notice.html',notice = notice_dict)
 
 

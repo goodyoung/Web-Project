@@ -107,9 +107,13 @@
         <!-- lanking 표시 ,-->
         <div class="board2 displays">
             {%for item in user_rank['item']%}
-            
-                <div class="leaders test_obj">
-                    
+                {%if loop.index % 2==1 %}
+                <div class="leaders1 test_obj coloror">
+                {%else%}
+                <div class="leaders2 test_obj coloror2">
+                {%endif%}
+
+
                     {% if user_rank['page'] == 1 %}
 
                         {% if loop.index <4 %}

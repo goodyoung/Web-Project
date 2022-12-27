@@ -4,10 +4,9 @@
 <body>
     <div class="notice">
         <div class="notice_top">            
-            <!-- 관리자 일 때만 등록 나오게
-            관리자는 0,1 로 판단 할 까?-->
+
             <div class='notice_name'>공지사항
-            {%if notice['admin'] == '새싹이2'%}
+            {%if notice['admin'] == 1%}
                 <a href="{{ url_for('myinfo.enroll') }}">등록</a>            
             {%endif%}
             </div>            
@@ -19,9 +18,8 @@
                 <div class="notice_datetime"> {{i['date']}}</div>
                 <div class="notice_sub">
                     <a href="{{ url_for('myinfo.content', content_id = i['id'] ) }}" class="textcon" >{{i['title']}}</a>
-                        <!-- 관리자 일 때만 등록 나오게
-                        관리자는 0,1 로 판단 할 까?-->                        
-                        {%if notice['admin'] == '새싹이2'%}                        
+                     
+                        {%if notice['admin'] == 1%}                        
                         <div class="admin_modify">
                             <a class = "delete" href="javascript:void(0)" data-uri="{{ url_for('myinfo.delete', content_id=i['id']) }}">삭제</a>                            
                             <a href="{{ url_for('myinfo.modify', content_id = i['id'] ) }}">수정</a>                        
