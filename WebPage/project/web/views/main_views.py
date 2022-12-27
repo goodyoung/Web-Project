@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, session, g, req
 from ..db import WebProject, exp_manager
 from datetime import date
 import json
+import random
 
 bp = Blueprint('main', __name__, url_prefix='/')
 wp = WebProject.instance()
@@ -64,6 +65,8 @@ def main_page():
         result = wp.send_query("SELECT user_Lv, user_Exp FROM user WHERE id = '{}'".format(g.user["user_id"]))
         main_data["lv"] = result[0]["user_Lv"]
         main_data["exp"] = result[0]["user_Exp"]
+
+        main_data["imgview"] = random.randrange(1,3)
 
         main_data["max_exp"] = em.lvup_dict[main_data["lv"]]
 
