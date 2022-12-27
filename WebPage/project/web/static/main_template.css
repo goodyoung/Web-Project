@@ -1,3 +1,10 @@
+*{
+    font-family: 'EF_Diary';
+}
+@font-face {
+    font-family: 'neon';
+    src: url('EF_Diary.ttf') format('truetype');
+}
 body{
     margin: 0;
     position: relative;
@@ -64,7 +71,6 @@ nav{
     color:white;
     text-decoration: none;
     font-size:16px;
-    font-family:Roboto;
 }
 
 .nav_bar > a.selected{

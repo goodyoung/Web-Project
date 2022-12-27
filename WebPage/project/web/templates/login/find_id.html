@@ -8,6 +8,13 @@
     <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./login/find_id.css') }}">
 </head>
 <body>
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger" role="alert">
+            <script>alert("{{message}}")</script>
+        </div>
+    {% endfor %}
+
     <div class="all">
         <div class="title">
             <h2>별명 찾기</h2>
@@ -15,17 +22,18 @@
                 별명을 확인하실 수 있습니다.</p>
         </div>    
         <div class="inputs">
-            <input type="text" placeholder="이름" class="inputtext">
+        <form action="{{ url_for('login.finder') }}" method="post">
+            <input type="text" placeholder="이름" class="inputtext" name = 'name'/>
             
         </div>
         <div class="inputs">
-            <input type="text" placeholder="비밀번호" class="inputtext">
+            <input type="password" placeholder="비밀번호" class="inputtext" name = 'pwd'/>
         </div>
     </div>
     <div class="borderline" style="border: 1px solid black; "></div>
     <div class="btn_box">
-        <button class="btn">별명 찾기</button>
+        <button type = 'submit' class="btn">별명 찾기</button>
     </div>
-
+    </form>
 </body>
 </html>

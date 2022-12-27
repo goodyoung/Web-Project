@@ -121,6 +121,7 @@ def ranking_page():
             te = True
             if params['value'] == ret2['id']:
                 te = False
+                print(ret1)
                 user_page = int((ret1 //10) +1)
                 data = {'user_page': user_page}
                 return jsonify(data)

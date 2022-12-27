@@ -70,9 +70,22 @@ def terms():
     return render_template('login/terms.html', terms = term_dict)
 
 # 별명 회원가입 찾기
-@bp.route('/find', methods=['GET'])
+@bp.route('/find', methods=['GET','POST'])
 def finder():
-    return render_template('login/find_id.html')
+    if request.method == 'POST':
+        if not (request.form['name']) or not (request.form['pwd']):
+            flash('내용이 비어 있습니다.')
+            return redirect(url_for('login.finder'))
+        else:
+            name = wp.send_query("SELECT id FROM user where name = '{}'".format(request.form['name']))
+            if not (name):
+                flash('내용이 틀림')
+                return redirect(url_for('login.finder'))
+            else:
+                flash("별명은 {} 입니다.".format(name[0]['id']))            
+                return redirect(url_for('login.login_page'))
+    else:
+        return render_template('login/find_id.html')
 
 # 로그아웃
 @bp.route('/logout/')
