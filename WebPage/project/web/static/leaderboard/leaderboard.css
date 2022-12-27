@@ -12,7 +12,7 @@ input::placeholder{
 
 section{
     width: 100%;
-    height: 445px;
+    height: calc(100% - 195px)
 }
 .headers{
     background-color:#71bc66;
@@ -193,7 +193,14 @@ section{
     color:white;
 }
 
-#dung{background-color:#99CD89;
+#dung{
+
+    background-color:#99CD89;
+
+    position:absolute;
+    bottom: 80px;
+    right: 0;
+
     z-index: 1;
     text-align: center;
     align-items: center;
@@ -202,9 +209,7 @@ section{
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    position:absolute;
-    top:502px;
-    left:297px;
+
 animation:ani 1s infinite alternate;  
 }
 @keyframes ani{

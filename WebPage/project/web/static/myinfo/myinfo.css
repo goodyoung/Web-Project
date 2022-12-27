@@ -1,14 +1,19 @@
 *{
     font-family: 'EF_Diary';
 }
+
 body{
+    margin: 0;
     position: relative;
 
-    width:360px;
-    height:640px;
+    max-width: 500px;
+    min-width: 300px;
+    width:100vw;
 
-    border: solid;
+    max-height: 1000px;
+    height: 100vh;
 }
+
 @font-face {
     font-family: 'neon';
     src: url('EF_Diary.ttf') format('truetype');
