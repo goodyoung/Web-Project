@@ -13,9 +13,17 @@ body *{
 }
 
 body {
+    margin: 0;
+    
     position: relative;
-    width:360px;
-    height:640px;
+
+    max-width: 500px;
+    min-width: 300px;
+    width:100vw;
+
+    max-height: 1000px;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
     border: solid;

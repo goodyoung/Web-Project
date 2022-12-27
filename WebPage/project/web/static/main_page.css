@@ -397,9 +397,6 @@ footer{
     background-image:url("ui/backimg3.jpeg");
 }
 
-
-
-
 .snowflake{
     width: 8px;
     height: 8px;
@@ -407,7 +404,6 @@ footer{
     background-color: white;
     position: absolute;
     top: -8px;
-
 }
 
 @keyframes fall{

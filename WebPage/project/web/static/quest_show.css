@@ -221,7 +221,7 @@ footer > ol{
 .answer_choice:has(input[type="radio"]:checked){
     display: block;
     
-    font-weight: 700;
+    color: #939393
 }
 
 .answer_choice > input[type="radio"]{

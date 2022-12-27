@@ -215,6 +215,10 @@ header{
     height:24px;
 }
 
+.ALL{
+    background-image: url("ui/all.png");
+}
+
 .solved{
     background-image: url("ui/solved.png");
 }

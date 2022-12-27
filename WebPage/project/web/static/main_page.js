@@ -209,7 +209,7 @@ function makeSnowflake() {
     setTimeout(() =>{
         body.removeChild(snowflake);
         makeSnowflake()
-    }, (duration + delay) * 230);
+    }, (duration + delay) * 180);
 }
 
 for (let index=0; index<600; index++){

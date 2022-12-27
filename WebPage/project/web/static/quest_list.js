@@ -44,7 +44,7 @@ window.onload = function(){
             let status_value = document.querySelector(".status_value")
             status_value.classList.remove(...status_value.classList)
             status_value.classList.add("status_value", "status_icon")
-            if(target_status!="ALL") status_value.classList.add(target_status)
+            status_value.classList.add(target_status)
             status_value.dataset["status"] = target_status
 
             let status_list = document.querySelector(".status_list")
