@@ -189,6 +189,10 @@ window.onload = function assign_event(){
     document.querySelector(".error-modal-modal_close").addEventListener('click', () => {
         document.querySelector(".error-modal").classList.remove("show")
     })
+
+    document.querySelector(".mission").addEventListener('click', () => {
+        window.location.href = "/quest"
+    })
 }
 
 const body = document.querySelector(".snow1");

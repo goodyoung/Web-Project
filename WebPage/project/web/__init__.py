@@ -14,12 +14,6 @@ def create_app():
     app.register_blueprint(quest_views.bp)
     app.register_blueprint(myinfo_views.bp)
 
-    @app.route('/runSQL', methods=['POST'])
-    def run_sql():
-        params = request.get_json()
-        sql = params["query"]
-        return wp.send_query(sql)
-
     @app.route('/connectSheet')
     def connectSheet():
         return json.dumps(wp.connect_sheet())
@@ -34,5 +28,8 @@ def create_app():
         is_lvup["lv"] = em.check_lvup(g.user["user_id"])
         return json.dumps(is_lvup)
 
+    @app.route('/testpage')
+    def test_frame():
+        return render_template('frame.html')
 
     return app
