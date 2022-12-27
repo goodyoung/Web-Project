@@ -1,14 +1,7 @@
 {% extends 'main_template.html' %}
 {% block content %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
-    <title>SeSac</title>
     <link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='myinfo/myinfo.css') }}">
     <script defer src="{{ url_for('static', filename='myinfo/myinfo_modify.js') }}"></script>
-
 <body>
     <div class="myinfomodify">
         <div class="myinfomodify_top">
@@ -22,13 +15,8 @@
                 <div class="myinfomodify_content_set">                    
                     <div class="myinfomodify_content_sub">{{user_info['user_name']}}</div>
                     <input type="button" class="myinfomodify_submit" id="myinfomodify_name" value="변경하기"/>
-                    <!-- 클릭하면 바뀌게 -->
-                    <!-- <div class="myinfomodify_content_sub"><input type="text"/></div>
-                    <input type="submit" href="#" class="myinfomodify_submit" value="확인"/> -->
                 </div>                
             </div>
-            
-            
 
             <div class="myinfomodify_content_fullset">                
                 <div class="myinfomodify_content_title">
@@ -37,12 +25,26 @@
                 <div class="myinfomodify_content_set">
                     <div class="myinfomodify_content_sub">********</div>
                     <input type="button" class="myinfomodify_submit" id="myinfomodify_password" value="변경하기"/>
-                    <!-- 클릭하면 바뀌게 -->
-                    <!-- <div class="myinfomodify_content_sub"><input type="password"/></div>
-                    <input type="submit" href="#" class="myinfomodify_submit" value="확인"/> -->
                 </div>                
             </div>                        
-                     
+
+            <div class="myinfomodify_content_fullset">                
+                <div class="myinfomodify_content_title">
+                    배경 선택
+                </div>
+                <div class = "totback">
+                    <a href="{{url_for('main.main_page',id = 1)}}">
+                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg.jpeg')}}" class="char" style = "width:35%; height:50%;">
+                    </a>
+
+                    <a href="{{url_for('main.main_page',id = 2)}}">
+                        <img src="{{url_for('static',filename='myinfo/myinfo_ui/backimg2.jpeg')}}" class="char" style = "width:35%; height:50%;">
+                    </a>
+
+                </div>
+            </div>    
+
+
             <div class="myinfomodify_content_fullset">                
                 <a href="{{url_for('login.withdraw')}}" class="myinfomodify_content_title" style="color: darkgray; font-weight: lighter;">
                     회원탈퇴 하기
@@ -51,10 +53,6 @@
             </div>        
         </div>
     </div>
-    {% for message in get_flashed_messages() %}
-<div class="alert alert-danger" role="alert">
-    <script>alert("{{message}}")</script>
-</div>
-{% endfor %}
+
 </body>
 {% endblock %}
