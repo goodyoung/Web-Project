@@ -1,13 +1,6 @@
 * {
     box-sizing: border-box;
 }
-body {
-    position: relative;
-    width:360px;
-    height:640px;
-
-    border: solid;
-}
 header{
     height:145px;
     width:100%;

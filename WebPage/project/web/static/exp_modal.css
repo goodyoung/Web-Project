@@ -1,16 +1,17 @@
 .level-modal, .exp-modal{
+    position: absolute;
+
     z-index: -1;
     opacity: 0;
-
-    position: absolute;
-    transform: translate(50%, 50%);
+    transform: translate(50%, 0);
+    display: none;
 }
 
 .level-modal{
     right: 50%;
     bottom:0;
 
-    transition: bottom 0.4s, opacity 0.4s;
+    transition: bottom 0.4s, opacity 0.4s, transform 0.4s;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
 }
 
@@ -19,6 +20,19 @@
     z-index: -1;
     right: 50%;
     bottom: 50%;
+}
+
+.exp-modal.show{
+    animation: fading 2s ease-in-out backwards;
+    transform: translate(50%, 50%);
+}
+
+.level-modal.show{
+    display: block;
+    z-index: 1;
+    bottom: 50%;
+    transform: translate(50%, 50%);
+    opacity: 1;
 }
 
 @keyframes fading{
@@ -36,17 +50,6 @@
         opacity: 0;
         z-index: -1;
     }
-}
-
-.exp-modal.show{
-    animation: fading 2s ease-in-out backwards;
-}
-
-
-.level-modal.show{
-    z-index: 1;
-    bottom: 50%;
-    opacity: 1;
 }
 
 .level-top-content{
@@ -115,8 +118,8 @@
 .level-modal_close{
     display:block;
 
-    padding: 9px 13px;
-    background: #27ae60;
+    padding: 5px 13px;
+    background: #607ace;
 
     border: none;
     outline: none;
@@ -129,4 +132,5 @@
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
+    margin: 8px;
 }

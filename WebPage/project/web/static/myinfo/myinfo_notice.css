@@ -1,14 +1,6 @@
 * {
     box-sizing: border-box;
 }
-body {
-    position: relative;
-    width:360px;
-    height:640px;
-
-    border: solid;    
-}
-
 .notice {
     height: 100%;   
     background-color: #f1f7f0;

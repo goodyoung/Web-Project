@@ -1,3 +1,18 @@
+body *::-webkit-scrollbar{
+    display: none;
+}
+
+section{
+    padding-top: 60px;
+    height: 100%;
+}
+
+.main{
+    max-height: calc(100% - 50px);
+
+    overflow-x: scroll;
+}
+
 header{
     position: absolute;
     left:0px;
@@ -134,10 +149,6 @@ pre{
     border-radius: 4px;
 }
 
-section{
-    margin-top:70px;
-}
-
 .problem_type{
     padding : 5px 5px 3px 5px;
 
@@ -155,6 +166,8 @@ section{
     border-radius: 20px;
 
     padding : 3px 5px 5px 5px;
+    background-image: url("../static/ui/problem.png");
+    background-size: cover;
 }
 
 .problem_content > img{
@@ -264,9 +277,9 @@ footer > button{
     position: absolute;
     right: 50%;
     bottom:0;
-    transform: translate(50%, 50%);
+    transform: translate(50%, 0);
 
-    transition: bottom 0.4s, opacity 0.4s;
+    transition: bottom 0.5s, opacity 0.5s, transform 0.5s;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
 }
 
@@ -283,6 +296,7 @@ footer > button{
 }
 
 .modal.show{
+    transform: translate(50%, 50%);
     z-index: 1;
     bottom: 50%;
     opacity: 1;

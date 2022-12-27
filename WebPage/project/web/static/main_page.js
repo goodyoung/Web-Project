@@ -137,6 +137,7 @@ function label_to_input(target){
 
 async function input_to_label(target){
     text_input = target.parentNode.querySelector("input")
+    console.log(text_input.value)
 
     if(text_input.value != ""){
         prev = text_input.nextSibling
