@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="my_text" style = 'width:200px'></div>
+
+
+    <script>
+        // 값만 전달... 하자 \
+        let test = ["<marquee>새싹이 키우기입니다~! 많이 즐겨 주세요~</marquee>"]
+        let counter = 0;
+        function te(tete){
+            tete = tete.replaceAll('&#39;','')
+            tete = tete.replaceAll('[','')
+            tete = tete.replaceAll(']','')
+            
+            test.push("<marquee>"+tete+"</marquee>")
+        }
+        
+        setInterval(change, 4500);
+        function change() {
+            document.getElementById("my_text").innerHTML = test[counter]
+            counter++;
+            if(counter >= test.length) { counter = 0; }
+        }
+        change()
+        </script>
+    
+    <script>
+        {% for item in datas['li'] %}
+            te('{{ item }}')
+        {% endfor %}
+    </script>
+
+</body>
+
+
+
+</html>

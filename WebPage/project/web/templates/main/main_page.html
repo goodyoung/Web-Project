@@ -6,7 +6,14 @@
 
 <script defer src="{{ url_for('static', filename='main_page.js') }}"></script>
 
+<div class="main_warning">
+    <div class="main_warning_title">NEWS</div>
+    <div class="main_warning_contents" id = 'my_text'></div>
+</div>
+
 <main>
+
+
     <div class="back snow{{main_data['snow_id']}} background{{main_data['background_id']}}">
         <div class="character_info">
             <div class="character_lv">Lv.<label style="font-size:30pt">{{ main_data["lv"] }}</label></div>
@@ -37,4 +44,32 @@
         <button class="error-modal-modal_close">확인</button>
     </div>
     </div>
+
+    <script>
+        // 값만 전달... 하자 \
+        let test = ["<marquee>새싹이 키우기입니다~! 많이 즐겨 주세요~</marquee>"]
+        let counter = 0;
+        function te(tete){
+            tete = tete.replaceAll('&#39;','')
+            tete = tete.replaceAll('[','')
+            tete = tete.replaceAll(']','')
+            
+            test.push("<marquee>"+tete+"</marquee>")
+        }
+        
+        setInterval(change, 20000);
+        function change() {
+            document.getElementById("my_text").innerHTML = test[counter]
+            counter++;
+            if(counter >= test.length) { counter = 0; }
+        }
+        change()
+        </script>
+    
+    <script>
+        {% for item in main_data['li'] %}
+            te('{{ item }}')
+        {% endfor %}
+    </script>
+
 {% endblock %}

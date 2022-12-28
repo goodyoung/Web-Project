@@ -415,3 +415,36 @@ footer{
         opacity: 0;
     }
 }
+
+
+.main_warning {
+    width: 100%;
+    height: auto;
+
+    padding: 1px;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-family: Montserrat;
+}
+
+.main_warning_title {
+    width: 15%;
+
+    padding: 5px;
+    background-color: red;
+
+    color: white;
+    text-align: center;
+}
+
+.main_warning_contents {
+    width: 84.5%;
+
+    padding: 5px;
+    background: linear-gradient(to right, white, #e0e0e0, #c9c9c9, darkgray, #a9a9a9, white);
+}
