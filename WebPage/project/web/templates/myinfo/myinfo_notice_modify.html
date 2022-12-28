@@ -1,22 +1,37 @@
 {% extends 'main_template.html' %}
 {% block content %}
-<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='./myinfo/myinfo_notice.css') }}">
+<link text="text/css" rel="stylesheet" href="{{ url_for('static', filename='myinfo/myinfo_enroll.css') }}">
+
 <body>
-    <form method="post" class="my-3">
-        <main>
-            <div class="content">
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong style = "margin-left:6px;">공지사항 수정</strong>
+        </div>
+        <form method="post" class="my-3">
+            <div class="board_write_wrap">
+                <div class="board_write">
+                    <div class="title">
+                        <dl>        
+                            <dd>
+                                <input type = 'text' class="datetime" value = "{{content['title']}}" name = 'title'/> 
+                            </dd>
+                        </dl>
+                    </div>
 
-                <div class="li">
-                    <input type = 'text' class="datetime" value = "{{content['title']}}" name = 'title'/> 
+                    <div class="cont">
+                        <textarea type = 'text' class="textcon" name = 'content'>{{content['content']}}</textarea>
+                    </div>
 
-                    <div class="datetime"> {{content['datetime']}}</div>
-
-                    <input type = 'text' class="textcon"value = "{{content['content']}}" name = 'content'/>
+                </div>
+                
+                <div class="bt_wrap">
+                    <button type="submit" class="tododo">저장하기</button>
+                    <a href="{{ url_for('myinfo.notice') }}">취소</a>
                 </div>
             </div>
-        </main>
-        <button type="submit" class="btn btn-primary">저장하기</button>
-    </form>
+        </form>
+
+    </div>
 </body>
 
 
