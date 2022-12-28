@@ -32,4 +32,8 @@ def create_app():
     def test_frame():
         return render_template('frame.html')
 
+    @app.route('/game')
+    def game():
+        return render_template('index.html')
+
     return app

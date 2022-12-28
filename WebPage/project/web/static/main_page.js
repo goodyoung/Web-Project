@@ -193,6 +193,10 @@ window.onload = function assign_event(){
     document.querySelector(".mission").addEventListener('click', () => {
         window.location.href = "/quest"
     })
+
+    document.querySelector(".character_img").addEventListener('dblclick', () => {
+        window.location.href = "/game"
+    })
 }
 
 const body = document.querySelector(".snow1");
