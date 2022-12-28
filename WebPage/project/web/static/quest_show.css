@@ -296,7 +296,7 @@ footer > button{
     background-color: red;
 }
 
-.modal.error_modal{
+.modal.error_modal, .modal.limit_modal{
     background-color: green;
 }
 
