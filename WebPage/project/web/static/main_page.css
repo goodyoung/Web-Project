@@ -32,7 +32,7 @@ header{
 main{
     position: relative;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 96px);
 
     display: flex;
     flex-direction: column;
@@ -419,7 +419,7 @@ footer{
 
 .main_warning {
     width: 100%;
-    height: auto;
+    height: 36px;
 
     padding: 1px;
     margin: 0;
@@ -434,7 +434,6 @@ footer{
 
 .main_warning_title {
     width: 15%;
-
     padding: 5px;
     background-color: red;
 
@@ -444,7 +443,6 @@ footer{
 
 .main_warning_contents {
     width: 84.5%;
-
     padding: 5px;
     background: linear-gradient(to right, white, #e0e0e0, #c9c9c9, darkgray, #a9a9a9, white);
 }
