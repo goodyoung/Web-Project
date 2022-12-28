@@ -60,16 +60,6 @@
 
         let notices = "{{ main_data['li'] }}".split(",")
 
-        // let test = ["<marquee loop=1>새싹이 키우기입니다~! 많이 즐겨 주세요~</marquee>"]
-
-        // function te(tete){
-        //     tete = tete.replaceAll('&#39;','')
-        //     tete = tete.replaceAll('[','')
-        //     tete = tete.replaceAll(']','')
-            
-        //     test.push("<marquee>"+tete+"</marquee>")
-        // }
-
         let counter = 0;
 
         change()
@@ -102,11 +92,6 @@
             if(counter >= notices.length) { counter = 0; }
         }
 
-        // change()
-
-        // {% for item in main_data['li'] %}
-        //     te('{{ item }}')
-        // {% endfor %}
     </script>
 
 {% endblock %}
