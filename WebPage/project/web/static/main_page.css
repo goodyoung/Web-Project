@@ -448,3 +448,13 @@ footer{
     padding: 5px;
     background: linear-gradient(to right, white, #e0e0e0, #c9c9c9, darkgray, #a9a9a9, white);
 }
+
+.banner{
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.banner > label{
+    display: block;
+}

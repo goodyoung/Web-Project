@@ -86,7 +86,6 @@ def main_page():
         today = date.today().isoformat()
         main_data["mission"] = wp.send_query("SELECT quest_solve FROM daily WHERE user_id = '{}' AND date = '{}'".format(g.user["user_id"], today))[0]["quest_solve"]
 
-
         two = wp.send_query('select content from notice_board')
         li = [i['content'] for i in two]
         main_data['li'] = li

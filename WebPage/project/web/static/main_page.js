@@ -217,5 +217,5 @@ function makeSnowflake() {
 }
 
 for (let index=0; index<600; index++){
-    setTimeout(makeSnowflake,500*index);
+    if(body != null) setTimeout(makeSnowflake,500*index);
 }

@@ -8,7 +8,13 @@
 
 <div class="main_warning">
     <div class="main_warning_title">NEWS</div>
-    <div class="main_warning_contents" id = 'my_text'></div>
+    <div class="main_warning_contents" id = 'my_text'>
+        <marquee class="banner">
+            <label>
+                라벨 입니다.
+            </label>
+        </marquee>
+    </div>
 </div>
 
 <main>
@@ -47,29 +53,60 @@
 
     <script>
         // 값만 전달... 하자 \
-        let test = ["<marquee>새싹이 키우기입니다~! 많이 즐겨 주세요~</marquee>"]
-        let counter = 0;
-        function te(tete){
-            tete = tete.replaceAll('&#39;','')
-            tete = tete.replaceAll('[','')
-            tete = tete.replaceAll(']','')
+        console.log("{{ main_data['li'] }}")
+
+        let banner = document.querySelector(".banner")
+        let banner_width = banner.offsetWidth
+
+        let notices = "{{ main_data['li'] }}".split(",")
+
+        // let test = ["<marquee loop=1>새싹이 키우기입니다~! 많이 즐겨 주세요~</marquee>"]
+
+        // function te(tete){
+        //     tete = tete.replaceAll('&#39;','')
+        //     tete = tete.replaceAll('[','')
+        //     tete = tete.replaceAll(']','')
             
-            test.push("<marquee>"+tete+"</marquee>")
-        }
-        
-        setInterval(change, 20000);
-        function change() {
-            document.getElementById("my_text").innerHTML = test[counter]
-            counter++;
-            if(counter >= test.length) { counter = 0; }
-        }
+        //     test.push("<marquee>"+tete+"</marquee>")
+        // }
+
+        let counter = 0;
+
         change()
-        </script>
-    
-    <script>
-        {% for item in main_data['li'] %}
-            te('{{ item }}')
-        {% endfor %}
+        setInterval(change, 10000)
+
+        function change() {
+            let text = notices[counter]
+
+            text = text.replaceAll('&#39;','')
+            text = text.replaceAll('[','')
+            text = text.replaceAll(']','')
+
+            document.querySelector(".banner > label").innerText = text
+            let length = document.querySelector(".banner > label").offsetWidth
+            console.log(length)
+
+            let label = document.createElement("label")
+            label.appendChild(document.createTextNode(text))
+
+            banner.remove()
+            banner = document.createElement("marquee")
+            banner.classList.add("banner")
+            banner.setAttribute("scrolldelay", "100");
+            banner.setAttribute("scrollamount", (2*(length) + banner_width)/100)
+            banner.setAttribute("loop", "1");
+            banner.appendChild(label)
+
+            document.querySelector(".main_warning_contents").appendChild(banner)
+            counter++;
+            if(counter >= notices.length) { counter = 0; }
+        }
+
+        // change()
+
+        // {% for item in main_data['li'] %}
+        //     te('{{ item }}')
+        // {% endfor %}
     </script>
 
 {% endblock %}
